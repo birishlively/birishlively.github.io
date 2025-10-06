@@ -216,3 +216,44 @@ document.addEventListener("DOMContentLoaded", () => {
           : inputs.phone.closest(".field").classList.contains("invalid")
           ? inputs.phone
           : inputs.date.closest(".field").classList.contains("invalid")
+          ? inputs.date
+          : inputs.time.closest(".field").classList.contains("invalid")
+          ? inputs.time
+          : inputs.party.closest(".field").classList.contains("invalid")
+          ? inputs.party
+          : inputs.agree;
+      if (firstInvalid) firstInvalid.focus();
+      return;
+    }
+
+    // Simulate async submission
+    try {
+      form.setAttribute("aria-busy", "true");
+      all("button, input, select, textarea", form).forEach((el) => (el.disabled = true));
+
+      await new Promise((res) => setTimeout(res, 600));
+
+      if (success) {
+        success.classList.add("show");
+        success.textContent = "Reservation received. We will email a confirmation shortly.";
+      }
+
+      form.reset();
+      // Restore dynamic constraints
+      if (dateEl && dateEl.dataset.minToday === "true") {
+        dateEl.min = todayYMD();
+      }
+      updateTimeAvailability();
+      all(".field", form).forEach((f) => f.classList.remove("invalid"));
+    } catch (err) {
+      if (success) {
+        success.classList.add("show");
+        success.textContent = "Sorry, something went wrong. Please try again.";
+      }
+    } finally {
+      form.removeAttribute("aria-busy");
+      all("button, input, select, textarea", form).forEach((el) => (el.disabled = false));
+      if (agreeEl) agreeEl.checked = false;
+    }
+  });
+});
