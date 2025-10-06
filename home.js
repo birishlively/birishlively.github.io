@@ -1,36 +1,152 @@
-/* Main shared JS: nav toggle + current year + motion helpers */
-(function () {
-  // Set current year in footer
-  const yearEl = document.getElementById("year");
-  if (yearEl) yearEl.textContent = new Date().getFullYear();
+/* =========================
+   Home CSS • MAKO
+   File: css/home.css
+   ========================= */
 
-  // Mobile nav toggle
-  const toggle = document.querySelector(".nav-toggle");
-  const navList = document.querySelector(".nav-list");
-  if (toggle && navList) {
-    toggle.addEventListener("click", () => {
-      const isOpen = navList.classList.toggle("open");
-      toggle.setAttribute("aria-expanded", String(isOpen));
-      // Close on outside click
-      const onDocClick = (e) => {
-        if (!navList.contains(e.target) && !toggle.contains(e.target)) {
-          navList.classList.remove("open");
-          toggle.setAttribute("aria-expanded", "false");
-          document.removeEventListener("click", onDocClick);
-        }
-      };
-      if (isOpen) document.addEventListener("click", onDocClick);
-    });
+/* ----- Hero Section ----- */
+.hero {
+  padding-top: clamp(24px, 4vw, 48px);
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  gap: clamp(20px, 4vw, 32px);
+}
 
-    // Close menu when a link is chosen
-    navList.addEventListener("click", (e) => {
-      const link = e.target.closest("a");
-      if (!link) return;
-      navList.classList.remove("open");
-      toggle.setAttribute("aria-expanded", "false");
-    });
+/* Hero Text */
+.hero-copy .kicker {
+  font-weight: 800;
+  font-size: clamp(1.25rem, 3vw, 2rem);
+  color: var(--red);
+  margin-bottom: 6px;
+}
+
+.hero-copy h1 {
+  font-size: clamp(2.4rem, 7vw, 4.2rem);
+  line-height: 1.05;
+  margin-bottom: 12px;
+  letter-spacing: 0.6px;
+}
+
+.hero-copy .lede {
+  font-size: clamp(1.05rem, 2vw, 1.2rem);
+  max-width: 50ch;
+  color: #333;
+  margin-bottom: 16px;
+}
+
+.btn-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Hero Image */
+.hero-media {
+  margin: 0;
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+
+.hero-media img {
+  width: min(520px, 90%);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 10px solid #eee;
+  box-shadow: var(--shadow);
+}
+
+.hero-media::after {
+  content: "";
+  position: absolute;
+  inset: -10px;
+  border-radius: 50%;
+  border: 1px dashed rgba(0, 0, 0, 0.1);
+  pointer-events: none;
+}
+
+/* ----- Info Strip ----- */
+.info-strip {
+  align-items: start;
+}
+
+.info {
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 18px;
+  transition: transform var(--trans), box-shadow var(--trans);
+}
+
+.info:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.16);
+}
+
+.info h3 {
+  font-size: 1.1rem;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.info address {
+  font-style: normal;
+  line-height: 1.5;
+}
+
+.info a {
+  color: var(--red);
+  text-decoration: underline;
+}
+
+/* Hours table layout */
+.hours-grid {
+  grid-template-columns: 140px 1fr;
+  gap: 6px 12px;
+}
+.meta {
+  color: #555;
+}
+
+/* ----- Reveal on Scroll ----- */
+.hero .hero-copy,
+.hero .hero-media,
+.info-strip .info {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: 700ms ease;
+}
+.is-visible .hero-copy,
+.is-visible .hero-media,
+.is-visible .info {
+  opacity: 1;
+  transform: none;
+}
+
+/* ----- Responsive Design ----- */
+@media (max-width: 1000px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
   }
+  .hero-media img {
+    width: min(440px, 85%);
+    border-width: 8px;
+  }
+  .btn-row {
+    justify-content: center;
+  }
+}
 
-  // Motion preference utility
-  window.prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-})();
+@media (max-width: 600px) {
+  .info {
+    padding: 16px;
+  }
+  .hero-media img {
+    width: 88%;
+    border-width: 6px;
+  }
+}
