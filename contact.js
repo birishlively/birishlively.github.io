@@ -1,66 +1,86 @@
-// Simple accessible client-side validation for the contact form
-const cForm = document.getElementById("contact-form");
-if (cForm) {
-  const nameEl = document.getElementById("name");
-  const emailEl = document.getElementById("email");
-  const msgEl = document.getElementById("message");
-  const errorsEl = document.getElementById("contact-errors");
+/* =========================
+   Contact JS • MAKO
+   File: js/contact.js
+   ========================= */
 
-  function clearErrors() {
-    errorsEl.innerHTML = "";
-    errorsEl.classList.remove("has-errors");
-    cForm.querySelectorAll("[aria-invalid='true']").forEach(el => {
-      el.removeAttribute("aria-invalid");
-      const id = el.id + "-error";
-      const node = document.getElementById(id);
-      if (node) node.remove();
-      const dby = (el.getAttribute("aria-describedby") || "")
-        .split(" ").filter(x => x && x !== id).join(" ");
-      if (dby) el.setAttribute("aria-describedby", dby);
-      else el.removeAttribute("aria-describedby");
-    });
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("contactForm");
+  if (!form) return;
+
+  const success = document.getElementById("success-msg");
+
+  // Helpers
+  const q = (sel, root = document) => root.querySelector(sel);
+  const all = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+
+  const validators = {
+    name: (v) => v.trim().length >= 2,
+    email: (v) => /^\S+@\S+\.\S+$/.test(v.trim()),
+    message: (v) => v.trim().length > 0,
+    subject: (_) => true
+  };
+
+  function setFieldState(input, ok) {
+    const field = input.closest(".field");
+    if (!field) return;
+    field.classList.toggle("invalid", !ok);
   }
 
-  function addFieldError(el, message) {
-    el.setAttribute("aria-invalid", "true");
-    const id = el.id + "-error";
-    let node = document.getElementById(id);
-    if (!node) {
-      node = document.createElement("div");
-      node.id = id;
-      node.className = "field-error";
-      node.style.marginTop = "4px";
-      node.style.color = "#ffb4b4";
-      el.insertAdjacentElement("afterend", node);
-    }
-    node.textContent = message;
-    const dby = el.getAttribute("aria-describedby") || "";
-    el.setAttribute("aria-describedby", dby ? dby + " " + id : id);
-
-    errorsEl.classList.add("has-errors");
-    const row = document.createElement("div");
-    row.textContent = message;
-    errorsEl.appendChild(row);
+  function validateField(input) {
+    const fn = validators[input.name] || (() => true);
+    const valid = fn(input.value);
+    setFieldState(input, valid);
+    return valid;
   }
 
-  function validEmail(v) {
-    return /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v);
-  }
-
-  cForm.addEventListener("submit", e => {
-    clearErrors();
-    let first = null;
-
-    if (!nameEl.value.trim()) { addFieldError(nameEl, "Name is required"); first = first || nameEl; }
-    if (!emailEl.value.trim()) { addFieldError(emailEl, "Email is required"); first = first || emailEl; }
-    else if (!validEmail(emailEl.value)) { addFieldError(emailEl, "Enter a valid email"); first = first || emailEl; }
-    if (!msgEl.value.trim()) { addFieldError(msgEl, "Message is required"); first = first || msgEl; }
-
-    if (first) { e.preventDefault(); first.focus(); return; }
-
-    // Simulate success for now
-    e.preventDefault();
-    alert("Thanks for your message. We will reply by email.");
-    cForm.reset();
+  // Live validation on input and blur
+  all("input, textarea", form).forEach((el) => {
+    el.addEventListener("input", () => validateField(el));
+    el.addEventListener("blur", () => validateField(el));
   });
-}
+
+  // Submit handler
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const inputs = {
+      name: q("#name", form),
+      email: q("#email", form),
+      subject: q("#subject", form),
+      message: q("#message", form)
+    };
+
+    // Validate all
+    const results = Object.values(inputs).map(validateField);
+    const allValid = results.every(Boolean);
+
+    if (!allValid) {
+      // Focus first invalid field
+      const firstInvalid = Object.values(inputs).find((i) => !validateField(i));
+      if (firstInvalid) firstInvalid.focus();
+      return;
+    }
+
+    // Simulate async submission
+    try {
+      // Replace this block with your real endpoint if needed
+      await new Promise((res) => setTimeout(res, 500));
+
+      // Success UI
+      if (success) {
+        success.classList.add("show");
+        success.textContent = "Message sent successfully. We will get back to you soon.";
+      }
+
+      form.reset();
+      // Clear error states after reset
+      all(".field", form).forEach((f) => f.classList.remove("invalid"));
+    } catch (err) {
+      // Fallback error notice
+      if (success) {
+        success.classList.add("show");
+        success.textContent = "Sorry, something went wrong. Please try again.";
+      }
+    }
+  });
+});
