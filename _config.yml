@@ -1,3 +1,14 @@
-theme: jekyll-theme-minimal
-title: Home | Mako Restaurants
-description: stuff project updates
+# =========================
+# GitHub Pages Config
+# =========================
+# Disable Jekyll processing so all folders and files (like css, js) load properly
+# This makes sure GitHub Pages treats this as a static site, not a Jekyll project.
+
+theme: null
+exclude:
+  - node_modules
+  - README.md
+
+# Optional: Set base URL if publishing from a project subfolder
+# baseurl: "/mako"
+# url: "https://yourusername.github.io"
