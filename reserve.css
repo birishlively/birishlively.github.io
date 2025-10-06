@@ -1,0 +1,157 @@
+/* =========================
+   Reservation CSS • MAKO
+   File: reservation.css
+   ========================= */
+
+/* Layout wrappers */
+.form-card {
+  max-width: 820px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 22px;
+}
+.tips-card {
+  max-width: 820px;
+  margin: 16px auto 0;
+  background: var(--muted);
+  border-radius: var(--radius);
+  padding: 18px;
+  box-shadow: var(--shadow);
+}
+.tips-card h3 { margin-top: 0; }
+
+/* Grid helpers specific to this page */
+.inline-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.inline-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+}
+
+/* Fields */
+.field {
+  display: grid;
+  gap: 6px;
+}
+label {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+textarea,
+select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--grey);
+  border-radius: 12px;
+  background: #fff;
+  color: var(--text);
+  font: inherit;
+  transition: border-color var(--trans), box-shadow var(--trans);
+}
+textarea { min-height: 120px; resize: vertical; }
+input:focus,
+textarea:focus,
+select:focus {
+  outline: 3px solid rgba(211, 47, 47, 0.2);
+  border-color: var(--red);
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.02);
+}
+
+/* Checkbox row */
+.checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+.checkbox input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--red);
+}
+
+/* Help and errors */
+.help {
+  color: #666;
+  font-size: 0.9rem;
+}
+.error-text {
+  display: none;
+  color: #b00020;
+  font-size: 0.95rem;
+}
+.field.invalid .error-text { display: block; }
+
+/* Success banner */
+.success {
+  display: none;
+  background: #ecfdf5;
+  border: 1px solid rgba(5, 150, 105, 0.25);
+  color: #065f46;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  margin-bottom: 12px;
+}
+.success.show { display: block; }
+
+/* Form actions */
+.form-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+/* Minor polish for selects on iOS */
+select {
+  -webkit-appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, #999 50%), 
+                    linear-gradient(135deg, #999 50%, transparent 50%),
+                    linear-gradient(to right, #ddd, #ddd);
+  background-position: calc(100% - 18px) calc(1em - 2px), calc(100% - 12px) calc(1em - 2px), calc(100% - 2.2rem) 50%;
+  background-size: 6px 6px, 6px 6px, 1px 1.75em;
+  background-repeat: no-repeat;
+  padding-right: 2.6rem;
+}
+
+/* Disable styles */
+input:disabled,
+select:disabled,
+textarea:disabled {
+  background: #f8f8f8;
+  color: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* Reveal support */
+.form-card,
+.tips-card {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: 700ms ease;
+}
+.is-visible .form-card,
+.is-visible .tips-card {
+  opacity: 1;
+  transform: none;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .inline-3 { grid-template-columns: 1fr; }
+}
+@media (max-width: 720px) {
+  .inline-2 { grid-template-columns: 1fr; }
+  .form-card, .tips-card { padding: 18px; }
+}
