@@ -1,25 +1,143 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Home | Mako Restaurants   </title>
-
-    <meta name="description" content="Restaurant Website with information and menu options." />
-
-    <meta property="og:title" content="Home | Mako Restaurants" />
-    <meta property="og:description" content="Restaurant Website with information and menu options." />
-
-    <link rel="stylesheet" href="style.css"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MAKO — Home</title>
+  <meta name="description" content="MAKO homepage. Swap in real copy, images, and links when ready." />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/home.css" />
 </head>
+<body id="home-page">
+  <a class="skip-link" href="#main">Skip to main content</a>
 
-<body>
-    <a class="skip-link" href="#main">Skip to main<a/>
+  <!-- Site header -->
+  <header role="banner" class="site-header">
+    <div class="container header-row">
+      <a class="brand" href="index.html" aria-label="MAKO home">
+        <span class="brand-mark" aria-hidden="true">M</span>
+        <span class="brand-name">MAKO</span>
+      </a>
 
-    <header role="banner"></header>
-     <div class="brand">
-      <img src="" alt="" width="56" height="56" />
-      <h1></h1>
-    </div>    
+      <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">
+        <span class="nav-toggle-label">Menu</span>
+      </button>
+
+      <nav id="primary-nav" class="site-nav" aria-label="Primary">
+        <ul class="nav-list">
+          <li><a href="index.html" aria-current="page">Home</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="reservation.html">Reservation</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a class="btn btn-small" href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main content -->
+  <main id="main">
+    <!-- Hero -->
+    <section class="section hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="kicker">mako</p>
+          <h1>Trinidadian flavor that hits</h1>
+          <p class="lede">Short intro goes here. Keep it one or two sentences. Replace later.</p>
+          <div class="btn-row" role="group" aria-label="Primary actions">
+            <a class="btn btn-primary" href="menu.html">Order now</a>
+            <a class="btn btn-ghost" href="reservation.html">Book a table</a>
+          </div>
+        </div>
+
+        <figure class="hero-media">
+          <img
+            src="https://images.unsplash.com/photo-1526318472351-c75fcf070305?q=80&w=1200&auto=format&fit=crop"
+            alt="Plated dish"
+          />
+          <figcaption class="visually-hidden">Sample dish image</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Highlights -->
+    <section class="section">
+      <div class="container section-head">
+        <h2>Highlights</h2>
+        <p class="section-sub">Three quick things to show off. Swap these later.</p>
+      </div>
+
+      <div class="container grid grid-3">
+        <article class="card">
+          <img class="card-img" src="https://picsum.photos/800/450?1" alt="Food item" />
+          <div class="card-body">
+            <h3>Popular item</h3>
+            <p class="meta">Short blurb goes here.</p>
+            <a class="btn btn-ghost" href="menu.html">See menu</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <img class="card-img" src="https://picsum.photos/800/450?2" alt="Food item" />
+          <div class="card-body">
+            <h3>Signature</h3>
+            <p class="meta">Short blurb goes here.</p>
+            <a class="btn btn-ghost" href="menu.html">See menu</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <img class="card-img" src="https://picsum.photos/800/450?3" alt="Dessert" />
+          <div class="card-body">
+            <h3>Sweet finish</h3>
+            <p class="meta">Short blurb goes here.</p>
+            <a class="btn btn-ghost" href="menu.html">See menu</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Info strip -->
+    <section class="section section-muted">
+      <div class="container grid grid-3 info-strip">
+        <div class="info">
+          <h3>Hours</h3>
+          <p class="meta">Update these later.</p>
+          <div class="grid" style="grid-template-columns: 140px 1fr; gap: 6px 12px;">
+            <div class="meta">Mon to Fri</div><div>7:00 AM to 11:00 PM</div>
+            <div class="meta">Saturday</div><div>8:00 AM to 1:00 AM</div>
+            <div class="meta">Sunday</div><div>8:00 AM to 9:00 PM</div>
+          </div>
+        </div>
+
+        <div class="info">
+          <h3>Find us</h3>
+          <address>
+            6112 N Lincoln Ave<br />
+            Chicago, IL 60659
+          </address>
+          <p><a target="_blank" rel="noopener" href="https://maps.google.com/?q=6112+N+Lincoln+Ave,+Chicago,+IL+60659">Open in Maps</a></p>
+        </div>
+
+        <div class="info">
+          <h3>Get in touch</h3>
+          <p>Email: <a href="mailto:team@makoameal.com">team@makoameal.com</a></p>
+          <p>Phone: <a href="tel:+15555555555">+1 555 555 5555</a></p>
+          <p><a href="contact.html">Contact form</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer role="contentinfo" class="site-footer">
+    <div class="container">
+      <p><a href="#privacy">Privacy</a> | <a href="#accessibility">Accessibility</a></p>
+      <p><small>&copy; <span id="year"></span> MAKO</small></p>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+  <script src="js/home.js" defer></script>
 </body>
 </html>
