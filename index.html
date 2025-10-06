@@ -6,21 +6,21 @@
   <title>MAKO | Home</title>
   <meta name="description" content="MAKO serves authentic Trini flavors in a crisp, modern space. View the menu, book a table, and learn our story." />
   <meta name="theme-color" content="#d32f2f" />
-  <link rel="stylesheet" href="css/base.css" />
-  <link rel="stylesheet" href="css/home.css" />
+  <link rel="stylesheet" href="base.css" />
+  <link rel="stylesheet" href="home.css" />
 </head>
+
 <body id="home-page">
   <a class="skip-link" href="#main">Skip to main content</a>
 
   <!-- Header -->
-  <header class="site-header">
+  <header class="site-header" role="banner">
     <div class="container header-row">
       <a class="brand" href="index.html" aria-label="MAKO home">
         <span class="brand-mark" aria-hidden="true">M</span>
         <span class="brand-name">MAKO</span>
       </a>
 
-      <!-- Mobile nav button -->
       <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">
         <span class="nav-toggle-label">Menu</span>
       </button>
@@ -40,7 +40,7 @@
   <!-- Main -->
   <main id="main">
     <!-- Hero -->
-    <section class="section hero">
+    <section class="section hero reveal">
       <div class="container hero-grid">
         <div class="hero-copy">
           <p class="kicker" aria-label="brand name">mako</p>
@@ -55,11 +55,10 @@
 
         <figure class="hero-media">
           <picture>
-            <!-- If you export a webp later, this will auto-upgrade -->
             <source srcset="img/first-img.webp" type="image/webp" />
             <img
               src="img/first-img.jpg"
-              alt="Crispy chicken sandwich on a beach, bright and inviting."
+              alt="Crispy chicken sandwich with bright pepper sauce and fresh herbs."
               width="900"
               height="900"
               decoding="async"
@@ -72,12 +71,12 @@
     </section>
 
     <!-- Info strip -->
-    <section class="section section-muted">
+    <section class="section section-muted reveal">
       <div class="container grid grid-3 info-strip">
         <section class="info" aria-labelledby="hours-heading">
           <h2 id="hours-heading">Hours</h2>
           <p class="meta">Update these later.</p>
-          <div class="grid hours-grid" style="grid-template-columns: 140px 1fr; gap: 6px 12px;">
+          <div class="grid hours-grid">
             <div class="meta">Mon to Fri</div><div>7:00 AM to 11:00 PM</div>
             <div class="meta">Saturday</div><div>10:00 AM to 1:00 AM</div>
             <div class="meta">Sunday</div><div>10:00 AM to 8:00 PM</div>
@@ -109,14 +108,14 @@
   </main>
 
   <!-- Footer -->
-  <footer class="site-footer">
+  <footer class="site-footer" role="contentinfo">
     <div class="container">
       <p><a href="#privacy">Privacy</a> | <a href="#accessibility">Accessibility</a></p>
       <p><small>&copy; <span id="year"></span> MAKO</small></p>
     </div>
   </footer>
 
-  <script src="js/main.js" defer></script>
-  <script src="js/home.js" defer></script>
+  <script src="main.js" defer></script>
+  <script src="home.js" defer></script>
 </body>
 </html>
