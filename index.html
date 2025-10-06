@@ -4,26 +4,28 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>MAKO | Home</title>
-  <meta name="description" content="MAKO homepage. View Menu, Order Food, Learn the Culture." />
+  <meta name="description" content="MAKO serves authentic Trini flavors in a crisp, modern space. View the menu, book a table, and learn our story." />
+  <meta name="theme-color" content="#d32f2f" />
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/home.css" />
 </head>
 <body id="home-page">
   <a class="skip-link" href="#main">Skip to main content</a>
 
-  <!-- Site header -->
-  <header role="banner" class="site-header">
+  <!-- Header -->
+  <header class="site-header">
     <div class="container header-row">
       <a class="brand" href="index.html" aria-label="MAKO home">
         <span class="brand-mark" aria-hidden="true">M</span>
         <span class="brand-name">MAKO</span>
       </a>
 
+      <!-- Mobile nav button -->
       <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">
         <span class="nav-toggle-label">Menu</span>
       </button>
 
-      <nav id="primary-nav" class="site-nav" aria-label="Primary">
+      <nav id="primary-nav" class="site-nav" aria-label="Primary navigation">
         <ul class="nav-list">
           <li><a href="index.html" aria-current="page">Home</a></li>
           <li><a href="menu.html">Menu</a></li>
@@ -35,15 +37,16 @@
     </div>
   </header>
 
-  <!-- Main content -->
+  <!-- Main -->
   <main id="main">
     <!-- Hero -->
     <section class="section hero">
       <div class="container hero-grid">
         <div class="hero-copy">
-          <p class="kicker">mako</p>
+          <p class="kicker" aria-label="brand name">mako</p>
           <h1>Change Your Life.</h1>
-          <p class="lede">When you're at Mako, you're family. Family eats well.</p>
+          <p class="lede">At MAKO you are family, and family eats well.</p>
+
           <div class="btn-row" role="group" aria-label="Primary actions">
             <a class="btn btn-primary" href="menu.html">Order now</a>
             <a class="btn btn-ghost" href="reservation.html">Book a table</a>
@@ -51,11 +54,19 @@
         </div>
 
         <figure class="hero-media">
-          <img
-            src="first img.jpg"
-            alt="Plate of food on beach in Caribbean Island."
-          />
-          <figcaption class="visually-hidden">Sample dish image</figcaption>
+          <picture>
+            <!-- If you export a webp later, this will auto-upgrade -->
+            <source srcset="img/first-img.webp" type="image/webp" />
+            <img
+              src="img/first-img.jpg"
+              alt="Crispy chicken sandwich on a beach, bright and inviting."
+              width="900"
+              height="900"
+              decoding="async"
+              fetchpriority="high"
+            />
+          </picture>
+          <figcaption class="visually-hidden">Signature dish photo</figcaption>
         </figure>
       </div>
     </section>
@@ -63,37 +74,42 @@
     <!-- Info strip -->
     <section class="section section-muted">
       <div class="container grid grid-3 info-strip">
-        <div class="info">
-          <h3>Hours</h3>
+        <section class="info" aria-labelledby="hours-heading">
+          <h2 id="hours-heading">Hours</h2>
           <p class="meta">Update these later.</p>
-          <div class="grid" style="grid-template-columns: 140px 1fr; gap: 6px 12px;">
+          <div class="grid hours-grid" style="grid-template-columns: 140px 1fr; gap: 6px 12px;">
             <div class="meta">Mon to Fri</div><div>7:00 AM to 11:00 PM</div>
             <div class="meta">Saturday</div><div>10:00 AM to 1:00 AM</div>
             <div class="meta">Sunday</div><div>10:00 AM to 8:00 PM</div>
           </div>
-        </div>
+        </section>
 
-        <div class="info">
-          <h3>Find us</h3>
+        <section class="info" aria-labelledby="findus-heading">
+          <h2 id="findus-heading">Find us</h2>
           <address>
             6112 N Lincoln Ave<br />
             Chicago, IL 60659
           </address>
-          <p><a target="_blank" rel="noopener" href="https://maps.google.com/?q=6112+N+Lincoln+Ave,+Chicago,+IL+60659">Open in Maps</a></p>
-        </div>
+          <p>
+            <a target="_blank" rel="noopener"
+               href="https://maps.google.com/?q=6112+N+Lincoln+Ave,+Chicago,+IL+60659">
+              Open in Maps
+            </a>
+          </p>
+        </section>
 
-        <div class="info">
-          <h3>Get in touch</h3>
+        <section class="info" aria-labelledby="contact-heading">
+          <h2 id="contact-heading">Get in touch</h2>
           <p>Email: <a href="mailto:team@makoameal.com">team@makoameal.com</a></p>
           <p>Phone: <a href="tel:+15555555555">+1 555 555 5555</a></p>
           <p><a href="contact.html">Contact form</a></p>
-        </div>
+        </section>
       </div>
     </section>
   </main>
 
   <!-- Footer -->
-  <footer role="contentinfo" class="site-footer">
+  <footer class="site-footer">
     <div class="container">
       <p><a href="#privacy">Privacy</a> | <a href="#accessibility">Accessibility</a></p>
       <p><small>&copy; <span id="year"></span> MAKO</small></p>
@@ -104,4 +120,3 @@
   <script src="js/home.js" defer></script>
 </body>
 </html>
-
