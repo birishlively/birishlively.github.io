@@ -1,0 +1,19 @@
+/* Red, white, black hero */
+
+.hero-grid{ display:grid; gap:40px; align-items:center; }
+.hero-copy h1{ font-size: var(--fs-hero); line-height: var(--lh-tight); margin: 6px 0 16px; }
+.hero-copy .lede{ color: var(--text-muted); font-size: 1.12rem; max-width: 58ch; }
+.hero-media img{ border-radius: var(--r-lg); box-shadow: var(--shadow-2); }
+
+/* Section headings with accent underline */
+.section-head h2{
+  position:relative; display:inline-block; padding-bottom: 6px;
+}
+.section-head h2::after{
+  content:""; position:absolute; left:0; right:0; bottom:0; height:3px;
+  background: linear-gradient(90deg, var(--accent), transparent 70%);
+  border-radius: 2px;
+}
+
+/* Cards already have aspect ratio in base, just tighten spacing on home */
+#home-page .card-body h3{ margin: 4px 0 6px; }

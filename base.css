@@ -1,0 +1,231 @@
+/* ===== Red • White • Black Theme ===== */
+:root {
+  --bg: #ffffff;           /* White background */
+  --surface: #f9f9f9;      /* Slightly gray panels */
+  --panel: #ffffff;        /* Pure white cards */
+  --text: #0a0a0a;         /* Main text black */
+  --text-muted: #555555;   /* Subtext gray */
+  --accent: #e30613;       /* Brand red */
+  --accent-light: #ff4d4d; /* Hover red */
+  --border: #dddddd;       /* Light border */
+  --focus: #e30613;        /* Red focus ring */
+
+  /* Shadows & radius */
+  --shadow-1: 0 8px 18px rgba(0,0,0,0.05);
+  --shadow-2: 0 12px 28px rgba(0,0,0,0.1);
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 16px;
+
+  /* Timings */
+  --t-fast: 120ms;
+  --t-med: 220ms;
+  --t-slow: 420ms;
+}
+
+/* ===== Global ===== */
+body {
+  margin: 0;
+  font-family: "Poppins", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color var(--t-fast) ease;
+}
+a:hover {
+  color: var(--accent-light);
+}
+
+/* ===== Layout ===== */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 16px;
+}
+
+.section {
+  padding: 60px 0;
+}
+.section-muted {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.section-head {
+  text-align: center;
+  margin-bottom: 32px;
+}
+.section-head h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  position: relative;
+  display: inline-block;
+}
+.section-head h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -8px;
+  height: 3px;
+  background: var(--accent);
+  border-radius: 3px;
+}
+
+/* ===== Header ===== */
+.site-header {
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: var(--shadow-1);
+}
+.header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.brand-mark {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 800;
+  border-radius: var(--r-sm);
+  transition: transform var(--t-med) ease;
+}
+.brand:hover .brand-mark {
+  transform: rotate(5deg);
+}
+.brand-name {
+  font-weight: 800;
+  font-size: 1.3rem;
+  letter-spacing: 0.5px;
+  color: var(--text);
+}
+
+/* ===== Navigation ===== */
+.nav-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  background: #fff;
+  color: var(--text);
+}
+.nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 24px;
+}
+.nav-list a {
+  position: relative;
+  font-weight: 600;
+}
+.nav-list a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0%;
+  height: 2px;
+  background: var(--accent);
+  transition: width var(--t-fast) ease;
+}
+.nav-list a:hover::after,
+.nav-list a[aria-current="page"]::after {
+  width: 100%;
+}
+
+/* ===== Buttons ===== */
+.btn {
+  display: inline-block;
+  padding: 12px 20px;
+  border-radius: var(--r-md);
+  font-weight: 600;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all var(--t-fast) ease;
+}
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+}
+.btn-primary:hover {
+  background: var(--accent-light);
+}
+.btn-ghost {
+  background: transparent;
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.btn-ghost:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* ===== Cards ===== */
+.card {
+  background: var(--panel);
+  border-radius: var(--r-md);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-1);
+  overflow: hidden;
+  transition: transform var(--t-fast) ease, box-shadow var(--t-fast) ease;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-2);
+}
+.card-body {
+  padding: 16px;
+}
+.card-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ===== Animations ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease;
+}
+.reveal.is-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+.hero-pop {
+  animation: heroPop 0.6s ease both;
+}
+@keyframes heroPop {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}

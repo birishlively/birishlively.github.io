@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MAKO — Contact</title>
+  <meta name="description" content="Contact MAKO. Send a message, find our location, and follow our socials." />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/contact.css" />
+</head>
+<body id="contact-page">
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header role="banner" class="site-header">
+    <div class="container header-row">
+      <a class="brand" href="index.html" aria-label="MAKO home">
+        <span class="brand-mark" aria-hidden="true">M</span>
+        <span class="brand-name">MAKO</span>
+      </a>
+
+      <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">
+        <span class="nav-toggle-label">Menu</span>
+      </button>
+
+      <nav id="primary-nav" class="site-nav" aria-label="Primary">
+        <ul class="nav-list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="reservation.html">Reservation</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a class="btn btn-small" href="contact.html" aria-current="page">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Breadcrumbs -->
+    <nav class="container" aria-label="Breadcrumb">
+      <ol class="breadcrumbs" role="list">
+        <li><a href="index.html">Home</a></li>
+        <li aria-current="page">Contact</li>
+      </ol>
+    </nav>
+
+    <!-- Contact details + form -->
+    <section class="section">
+      <div class="container grid grid-2">
+        <div>
+          <h1>Contact</h1>
+          <div class="info contact-box">
+            <p>Email: <a href="mailto:team@makoameal.com">team@makoameal.com</a></p>
+            <p>Phone: <a href="tel:+15555555555">+1 555 555 5555</a></p>
+            <address>
+              6112 N Lincoln Ave<br />
+              Chicago, IL 60659
+            </address>
+            <p><a target="_blank" rel="noopener" href="https://maps.google.com/?q=6112+N+Lincoln+Ave,+Chicago,+IL+60659">Open in Maps</a></p>
+            <nav class="social" aria-label="Social">
+              <a href="#" aria-label="Instagram">Instagram</a>
+              <a href="#" aria-label="Facebook">Facebook</a>
+              <a href="#" aria-label="Twitter">Twitter</a>
+            </nav>
+          </div>
+        </div>
+
+        <form id="contact-form" class="info contact-form" aria-labelledby="contact-heading" novalidate>
+          <h2 id="contact-heading">Send a message</h2>
+
+          <label for="name">Name <span aria-hidden="true">*</span></label>
+          <input id="name" name="name" type="text" autocomplete="name" required />
+
+          <label for="email">Email <span aria-hidden="true">*</span></label>
+          <input id="email" name="email" type="email" autocomplete="email" required />
+
+          <label for="topic">Topic</label>
+          <select id="topic" name="topic">
+            <option value="">Choose a topic</option>
+            <option>General question</option>
+            <option>Catering</option>
+            <option>Feedback</option>
+            <option>Other</option>
+          </select>
+
+          <label for="message">Message <span aria-hidden="true">*</span></label>
+          <textarea id="message" name="message" rows="5" required></textarea>
+
+          <div class="btn-row">
+            <button type="submit" class="btn btn-primary">Send</button>
+            <button type="reset" class="btn btn-ghost">Clear</button>
+          </div>
+
+          <!-- Error list for accessibility -->
+          <div id="contact-errors" class="meta" role="alert" aria-live="assertive"></div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer role="contentinfo" class="site-footer">
+    <div class="container">
+      <p><a href="#privacy">Privacy</a> | <a href="#accessibility">Accessibility</a></p>
+      <p><small>&copy; <span id="year"></span> MAKO</small></p>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+  <script src="js/contact.js" defer></script>
+</body>
+</html>

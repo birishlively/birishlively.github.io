@@ -1,0 +1,8 @@
+/* Contact page specific styles */
+#contact-page .contact-box .social {
+  display: flex; gap: 12px; flex-wrap: wrap;
+}
+#contact-page #contact-errors.has-errors {
+  background: #2b1c1c; border: 1px solid #5c2a2a; border-radius: 12px;
+  padding: 12px; margin-top: 12px;
+}

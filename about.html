@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MAKO — About</title>
+  <meta name="description" content="About MAKO. Our story, values, team, and what makes us different." />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/about.css" />
+</head>
+<body id="about-page">
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header role="banner" class="site-header">
+    <div class="container header-row">
+      <a class="brand" href="index.html" aria-label="MAKO home">
+        <span class="brand-mark" aria-hidden="true">M</span>
+        <span class="brand-name">MAKO</span>
+      </a>
+
+      <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">
+        <span class="nav-toggle-label">Menu</span>
+      </button>
+
+      <nav id="primary-nav" class="site-nav" aria-label="Primary">
+        <ul class="nav-list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="reservation.html">Reservation</a></li>
+          <li><a href="about.html" aria-current="page">About</a></li>
+          <li><a class="btn btn-small" href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Breadcrumbs -->
+    <nav class="container" aria-label="Breadcrumb">
+      <ol class="breadcrumbs" role="list">
+        <li><a href="index.html">Home</a></li>
+        <li aria-current="page">About</li>
+      </ol>
+    </nav>
+
+    <!-- Story -->
+    <section class="section">
+      <div class="container grid grid-2">
+        <div>
+          <h1>About MAKO</h1>
+          <p class="lede">Short, honest summary of who you are. Replace all copy later.</p>
+          <ul class="ticks" role="list">
+            <li>Quality ingredients</li>
+            <li>Fast service</li>
+            <li>Bold flavor</li>
+          </ul>
+        </div>
+
+        <aside class="info" aria-labelledby="fast-facts">
+          <h2 id="fast-facts">Fast facts</h2>
+          <dl class="facts">
+            <dt>Founded</dt><dd>1999</dd>
+            <dt>Style</dt><dd>Trinidadian</dd>
+            <dt>Specialties</dt><dd>Doubles, pelau, roti</dd>
+          </dl>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Values -->
+    <section class="section section-muted">
+      <div class="container">
+        <header class="section-head">
+          <h2>Our values</h2>
+          <p class="section-sub">Swap the placeholders with your real values.</p>
+        </header>
+
+        <div class="grid grid-3">
+          <article class="card">
+            <div class="card-body">
+              <h3>Hospitality</h3>
+              <p>Friendly service, clear communication, and care for every guest.</p>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-body">
+              <h3>Consistency</h3>
+              <p>Same great taste every visit, clear standards in the kitchen.</p>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-body">
+              <h3>Community</h3>
+              <p>Hire local, partner local, and show up for neighbors.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team -->
+    <section class="section">
+      <div class="container">
+        <h2>Team</h2>
+        <div class="grid grid-3">
+          <article class="card person" aria-labelledby="p1-name">
+            <img class="card-img" src="https://picsum.photos/800/600?person1" alt="Person headshot" />
+            <div class="card-body">
+              <h3 id="p1-name">Name</h3>
+              <p class="meta">Role</p>
+              <p>Short bio line. Replace with real info.</p>
+            </div>
+          </article>
+
+          <article class="card person" aria-labelledby="p2-name">
+            <img class="card-img" src="https://picsum.photos/800/600?person2" alt="Person headshot" />
+            <div class="card-body">
+              <h3 id="p2-name">Name</h3>
+              <p class="meta">Role</p>
+              <p>Short bio line. Replace with real info.</p>
+            </div>
+          </article>
+
+          <article class="card person" aria-labelledby="p3-name">
+            <img class="card-img" src="https://picsum.photos/800/600?person3" alt="Person headshot" />
+            <div class="card-body">
+              <h3 id="p3-name">Name</h3>
+              <p class="meta">Role</p>
+              <p>Short bio line. Replace with real info.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer role="contentinfo" class="site-footer">
+    <div class="container">
+      <p><a href="#privacy">Privacy</a> | <a href="#accessibility">Accessibility</a></p>
+      <p><small>&copy; <span id="year"></span> MAKO</small></p>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+  <script src="js/about.js" defer></script>
+</body>
+</html>

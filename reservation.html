@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MAKO — Reservation</title>
+    <meta name="description"
+        content="Book a table at MAKO. Choose date, time, party size, seating, and share any accessibility needs or dietary notes." />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/reservation.css" />
+    <script src="js/main.js" defer></script>
+    <script src="js/reservation.js" defer></script>
+
+
+    <!-- Schema.org ReserveAction so Google understands this is a booking page -->
+    <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "name": "MAKO",
+    "servesCuisine": "Trinidadian",
+    "potentialAction": {
+      "@type": "ReserveAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://your-domain.example/reservation.html",
+        "inLanguage": "en"
+      },
+      "result": {
+        "@type": "FoodEstablishmentReservation",
+        "name": "Table reservation"
+      }
+    }
+  }
+  </script>
+</head>
+
+<body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <!-- Shared site header and nav -->
+    <header role="banner" class="site-header">
+        <div class="container header-row">
+            <a class="brand" href="index.html" aria-label="MAKO home">
+                <span class="brand-mark" aria-hidden="true">M</span>
+                <span class="brand-name">MAKO</span>
+            </a>
+
+            <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">
+                <span class="nav-toggle-label">Menu</span>
+            </button>
+
+            <nav id="primary-nav" class="site-nav" aria-label="Primary">
+                <ul class="nav-list">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="reservation.html" aria-current="page">Reservation</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a class="btn btn-small" href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <!-- Breadcrumbs help orientation for screen readers and mobile users -->
+        <nav class="container" aria-label="Breadcrumb">
+            <ol class="breadcrumbs" role="list">
+                <li><a href="index.html">Home</a></li>
+                <li aria-current="page">Reservation</li>
+            </ol>
+        </nav>
+
+        <section class="section">
+            <div class="container">
+                <header class="section-head">
+                    <h1>Reservation</h1>
+                    <p class="section-sub">Pick a date, time, and party size. Share any dietary or accessibility notes
+                        so we can set you up right.</p>
+                </header>
+
+                <!-- Live summary region for future JS to fill -->
+                <div class="info" aria-live="polite" aria-atomic="true" id="reservation-summary">
+                    <strong>Summary</strong>
+                    <p>Choose your details to see a quick summary here.</p>
+                </div>
+
+                <form class="info contact-form" id="reservation-form" action="#" method="post" novalidate
+                    aria-describedby="form-help">
+                    <p id="form-help">Fields marked with * are required.</p>
+
+                    <!-- 1. Reservation details -->
+                    <fieldset>
+                        <legend>Reservation details</legend>
+
+                        <div class="grid grid-3">
+                            <div>
+                                <label for="res-date">Date <span aria-hidden="true">*</span></label>
+                                <input id="res-date" name="date" type="date" required inputmode="none"
+                                    aria-describedby="date-hint" />
+                                <p id="date-hint" class="meta">We are open seven days a week.</p>
+                            </div>
+
+                            <div>
+                                <label for="res-time">Time <span aria-hidden="true">*</span></label>
+                                <input id="res-time" name="time" type="time" required aria-describedby="time-hint" />
+                                <p id="time-hint" class="meta">Kitchen closes one hour before closing time.</p>
+                            </div>
+
+                            <div>
+                                <label for="party-size">Party size <span aria-hidden="true">*</span></label>
+                                <input id="party-size" name="party" type="number" min="1" max="20" value="2" required
+                                    aria-describedby="party-hint" />
+                                <p id="party-hint" class="meta">Larger than 10, add a note below.</p>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-2" style="margin-top:12px">
+                            <div>
+                                <label for="occasion">Occasion</label>
+                                <select id="occasion" name="occasion">
+                                    <option value="">Select an option</option>
+                                    <option>Birthday</option>
+                                    <option>Anniversary</option>
+                                    <option>Business</option>
+                                    <option>Casual</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label for="seating">Seating preference</label>
+                                <select id="seating" name="seating">
+                                    <option value="">No preference</option>
+                                    <option>Standard table</option>
+                                    <option>Booth</option>
+                                    <option>High top</option>
+                                    <option>Patio</option>
+                                </select>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <!-- 2. Contact info -->
+                    <fieldset>
+                        <legend>Your contact info</legend>
+
+                        <div class="grid grid-3">
+                            <div>
+                                <label for="first-name">First name <span aria-hidden="true">*</span></label>
+                                <input id="first-name" name="firstName" type="text" autocomplete="given-name"
+                                    required />
+                            </div>
+                            <div>
+                                <label for="last-name">Last name <span aria-hidden="true">*</span></label>
+                                <input id="last-name" name="lastName" type="text" autocomplete="family-name" required />
+                            </div>
+                            <div>
+                                <label for="phone">Mobile phone <span aria-hidden="true">*</span></label>
+                                <input id="phone" name="phone" type="tel" autocomplete="tel" required
+                                    placeholder="555-555-5555" />
+                            </div>
+                        </div>
+
+                        <div class="grid grid-2" style="margin-top:12px">
+                            <div>
+                                <label for="email">Email <span aria-hidden="true">*</span></label>
+                                <input id="email" name="email" type="email" autocomplete="email" required />
+                            </div>
+                            <div>
+                                <label for="contact-pref">Contact preference</label>
+                                <select id="contact-pref" name="contactPreference">
+                                    <option value="">No preference</option>
+                                    <option>Email</option>
+                                    <option>Text</option>
+                                    <option>Call</option>
+                                </select>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <!-- 3. Dietary and accessibility notes -->
+                    <fieldset>
+                        <legend>Dietary and accessibility</legend>
+
+                        <div class="grid grid-2">
+                            <div>
+                                <label for="diet">Dietary notes</label>
+                                <textarea id="diet" name="diet" rows="3"
+                                    placeholder="Allergies, halal, vegan, gluten free, spice level"></textarea>
+                            </div>
+
+                            <div>
+                                <label for="access">Accessibility needs</label>
+                                <textarea id="access" name="access" rows="3"
+                                    placeholder="Stroller or wheelchair space, seating height, quiet area"></textarea>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <!-- 4. Extras -->
+                    <fieldset>
+                        <legend>Extras</legend>
+
+                        <div class="grid grid-3">
+                            <div>
+                                <input id="notify-wait" name="notifyWait" type="checkbox" />
+                                <label for="notify-wait">Notify me if an earlier time opens</label>
+                            </div>
+                            <div>
+                                <input id="save-info" name="saveInfo" type="checkbox" />
+                                <label for="save-info">Save my info for next time</label>
+                            </div>
+                            <div>
+                                <input id="promo-opt" name="promoOpt" type="checkbox" />
+                                <label for="promo-opt">Email me specials</label>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <!-- 5. Notes for staff -->
+                    <fieldset>
+                        <legend>Notes for our team</legend>
+                        <label for="notes">Anything else we should know</label>
+                        <textarea id="notes" name="notes" rows="4"
+                            placeholder="Surprise dessert, high chair, split checks, other requests"></textarea>
+                    </fieldset>
+
+                    <!-- 6. Consent and submit -->
+                    <fieldset>
+                        <legend>Confirm</legend>
+
+                        <p class="meta" id="policy">
+                            By requesting a reservation you agree to our <a href="#terms">terms</a> and <a
+                                href="#privacy">privacy policy</a>.
+                            We will hold tables for 15 minutes after the scheduled time.
+                        </p>
+
+                        <div>
+                            <input id="agree" name="agree" type="checkbox" required aria-describedby="policy" />
+                            <label for="agree">I agree to the terms *</label>
+                        </div>
+
+                        <!-- Honeypot anti-spam field, hidden from assistive tech -->
+                        <div style="position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;"
+                            aria-hidden="true">
+                            <label for="company">Company</label>
+                            <input id="company" name="company" type="text" tabindex="-1" autocomplete="off" />
+                        </div>
+
+                        <div class="btn-row" style="margin-top:12px">
+                            <button type="submit" class="btn btn-primary">Request reservation</button>
+                            <button type="reset" class="btn btn-ghost">Clear form</button>
+                        </div>
+                    </fieldset>
+
+                    <!-- Error list region for future JS validation -->
+                    <div id="form-errors" class="meta" role="alert" aria-live="assertive"></div>
+                </form>
+
+                <noscript>
+                    <p class="meta">JavaScript is off, which is fine. Submit the form and we will confirm by email.</p>
+                </noscript>
+            </div>
+        </section>
+    </main>
+
+    <footer role="contentinfo" class="site-footer">
+        <div class="container">
+            <p><a href="#privacy" id="privacy">Privacy</a> | <a href="#terms" id="terms">Terms</a></p>
+            <p><small>&copy; <span id="year"></span> MAKO</small></p>
+        </div>
+    </footer>
+
+    <!-- Your global script will handle mobile nav, footer year, and optional validation later -->
+    <script src="script.js" defer></script>
+</body>
+
+</html>

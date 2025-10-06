@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MAKO — Menu</title>
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/menu.css" />
+    <script src="js/main.js" defer></script>
+    <script src="js/menu.js" defer></script>
+
+</head>
+
+<body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <header role="banner" class="site-header">
+        <div class="container header-row">
+            <a class="brand" href="index.html" aria-label="MAKO home">
+                <span class="brand-mark" aria-hidden="true">M</span>
+                <span class="brand-name">MAKO</span>
+            </a>
+
+            <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">
+                <span class="nav-toggle-label">Menu</span>
+            </button>
+
+            <nav id="primary-nav" class="site-nav" aria-label="Primary">
+                <ul class="nav-list">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="menu.html" aria-current="page">Menu</a></li>
+                    <li><a href="reservation.html">Reservation</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a class="btn btn-small" href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <section class="section">
+            <div class="container section-head">
+                <h1>Menu</h1>
+                <p class="section-sub">Replace these placeholders with real sections and items.</p>
+            </div>
+
+            <div class="container grid grid-3">
+                <article class="card">
+                    <img class="card-img" src="https://picsum.photos/800/450?10" alt="" />
+                    <div class="card-body">
+                        <h2>Starters</h2>
+                        <ul class="ticks" role="list">
+                            <li>Item name</li>
+                            <li>Item name</li>
+                            <li>Item name</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <img class="card-img" src="https://picsum.photos/800/450?11" alt="" />
+                    <div class="card-body">
+                        <h2>Mains</h2>
+                        <ul class="ticks" role="list">
+                            <li>Item name</li>
+                            <li>Item name</li>
+                            <li>Item name</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <img class="card-img" src="https://picsum.photos/800/450?12" alt="" />
+                    <div class="card-body">
+                        <h2>Drinks</h2>
+                        <ul class="ticks" role="list">
+                            <li>Item name</li>
+                            <li>Item name</li>
+                            <li>Item name</li>
+                        </ul>
+                    </div>
+                </article>
+            </div>
+
+            <div class="container" style="margin-top:24px">
+                <a class="btn btn-primary" href="#">Start online order</a>
+            </div>
+        </section>
+    </main>
+
+    <footer role="contentinfo" class="site-footer">
+        <div class="container">
+            <p><a href="#">Privacy</a> | <a href="#">Accessibility</a></p>
+            <p><small>&copy; <span id="year"></span> MAKO</small></p>
+        </div>
+    </footer>
+
+    <script src="script.js" defer></script>
+</body>
+
+</html>
