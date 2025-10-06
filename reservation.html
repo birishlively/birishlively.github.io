@@ -1,280 +1,233 @@
 <!doctype html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>MAKO — Reservation</title>
-    <meta name="description"
-        content="Book a table at MAKO. Choose date, time, party size, seating, and share any accessibility needs or dietary notes." />
-    <link rel="stylesheet" href="css/base.css" />
-    <link rel="stylesheet" href="css/reservation.css" />
-    <script src="js/main.js" defer></script>
-    <script src="js/reservation.js" defer></script>
-
-
-    <!-- Schema.org ReserveAction so Google understands this is a booking page -->
-    <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Restaurant",
-    "name": "MAKO",
-    "servesCuisine": "Trinidadian",
-    "potentialAction": {
-      "@type": "ReserveAction",
-      "target": {
-        "@type": "EntryPoint",
-        "urlTemplate": "https://your-domain.example/reservation.html",
-        "inLanguage": "en"
-      },
-      "result": {
-        "@type": "FoodEstablishmentReservation",
-        "name": "Table reservation"
-      }
-    }
-  }
-  </script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MAKO | Reservations</title>
+  <meta name="description" content="Reserve a table at MAKO. Choose date, time, and party size, then add any special requests." />
+  <meta name="theme-color" content="#d32f2f" />
+  <link rel="stylesheet" href="base.css" />
+  <link rel="stylesheet" href="reservation.css" />
 </head>
 
-<body>
-    <a class="skip-link" href="#main">Skip to main content</a>
+<body id="reservation-page">
+  <a class="skip-link" href="#main">Skip to main content</a>
 
-    <!-- Shared site header and nav -->
-    <header role="banner" class="site-header">
-        <div class="container header-row">
-            <a class="brand" href="index.html" aria-label="MAKO home">
-                <span class="brand-mark" aria-hidden="true">M</span>
-                <span class="brand-name">MAKO</span>
-            </a>
+  <!-- Header -->
+  <header class="site-header" role="banner">
+    <div class="container header-row">
+      <a class="brand" href="index.html" aria-label="MAKO home">
+        <span class="brand-mark" aria-hidden="true">M</span>
+        <span class="brand-name">MAKO</span>
+      </a>
 
-            <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">
-                <span class="nav-toggle-label">Menu</span>
-            </button>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">
+        <span class="nav-toggle-label">Menu</span>
+      </button>
 
-            <nav id="primary-nav" class="site-nav" aria-label="Primary">
-                <ul class="nav-list">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="menu.html">Menu</a></li>
-                    <li><a href="reservation.html" aria-current="page">Reservation</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a class="btn btn-small" href="contact.html">Contact</a></li>
-                </ul>
-            </nav>
+      <nav id="primary-nav" class="site-nav" aria-label="Primary navigation">
+        <ul class="nav-list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="reservation.html" aria-current="page">Reservations</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a class="btn btn-small" href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main id="main">
+    <!-- Intro -->
+    <section class="container section reveal">
+      <h1>Reserve a Table</h1>
+      <p>We confirm by email within minutes. Same day bookings close at 6 pm. Parties of 13 or more should call.</p>
+    </section>
+
+    <!-- Form and notes -->
+    <section class="container section reveal">
+      <div class="form-card" role="region" aria-labelledby="reserve-heading">
+        <h2 id="reserve-heading" class="visually-hidden">Reservation form</h2>
+
+        <!-- Success banner -->
+        <div id="reserve-success" class="success" role="status" aria-live="polite">
+          Reservation received. We will email a confirmation shortly.
         </div>
-    </header>
 
-    <main id="main">
-        <!-- Breadcrumbs help orientation for screen readers and mobile users -->
-        <nav class="container" aria-label="Breadcrumb">
-            <ol class="breadcrumbs" role="list">
-                <li><a href="index.html">Home</a></li>
-                <li aria-current="page">Reservation</li>
-            </ol>
-        </nav>
+        <form id="reserveForm" novalidate>
+          <!-- Honeypot for bots -->
+          <input type="text" id="website" name="website" class="visually-hidden" tabindex="-1" aria-hidden="true" autocomplete="off" />
 
-        <section class="section">
-            <div class="container">
-                <header class="section-head">
-                    <h1>Reservation</h1>
-                    <p class="section-sub">Pick a date, time, and party size. Share any dietary or accessibility notes
-                        so we can set you up right.</p>
-                </header>
-
-                <!-- Live summary region for future JS to fill -->
-                <div class="info" aria-live="polite" aria-atomic="true" id="reservation-summary">
-                    <strong>Summary</strong>
-                    <p>Choose your details to see a quick summary here.</p>
-                </div>
-
-                <form class="info contact-form" id="reservation-form" action="#" method="post" novalidate
-                    aria-describedby="form-help">
-                    <p id="form-help">Fields marked with * are required.</p>
-
-                    <!-- 1. Reservation details -->
-                    <fieldset>
-                        <legend>Reservation details</legend>
-
-                        <div class="grid grid-3">
-                            <div>
-                                <label for="res-date">Date <span aria-hidden="true">*</span></label>
-                                <input id="res-date" name="date" type="date" required inputmode="none"
-                                    aria-describedby="date-hint" />
-                                <p id="date-hint" class="meta">We are open seven days a week.</p>
-                            </div>
-
-                            <div>
-                                <label for="res-time">Time <span aria-hidden="true">*</span></label>
-                                <input id="res-time" name="time" type="time" required aria-describedby="time-hint" />
-                                <p id="time-hint" class="meta">Kitchen closes one hour before closing time.</p>
-                            </div>
-
-                            <div>
-                                <label for="party-size">Party size <span aria-hidden="true">*</span></label>
-                                <input id="party-size" name="party" type="number" min="1" max="20" value="2" required
-                                    aria-describedby="party-hint" />
-                                <p id="party-hint" class="meta">Larger than 10, add a note below.</p>
-                            </div>
-                        </div>
-
-                        <div class="grid grid-2" style="margin-top:12px">
-                            <div>
-                                <label for="occasion">Occasion</label>
-                                <select id="occasion" name="occasion">
-                                    <option value="">Select an option</option>
-                                    <option>Birthday</option>
-                                    <option>Anniversary</option>
-                                    <option>Business</option>
-                                    <option>Casual</option>
-                                    <option>Other</option>
-                                </select>
-                            </div>
-
-                            <div>
-                                <label for="seating">Seating preference</label>
-                                <select id="seating" name="seating">
-                                    <option value="">No preference</option>
-                                    <option>Standard table</option>
-                                    <option>Booth</option>
-                                    <option>High top</option>
-                                    <option>Patio</option>
-                                </select>
-                            </div>
-                        </div>
-                    </fieldset>
-
-                    <!-- 2. Contact info -->
-                    <fieldset>
-                        <legend>Your contact info</legend>
-
-                        <div class="grid grid-3">
-                            <div>
-                                <label for="first-name">First name <span aria-hidden="true">*</span></label>
-                                <input id="first-name" name="firstName" type="text" autocomplete="given-name"
-                                    required />
-                            </div>
-                            <div>
-                                <label for="last-name">Last name <span aria-hidden="true">*</span></label>
-                                <input id="last-name" name="lastName" type="text" autocomplete="family-name" required />
-                            </div>
-                            <div>
-                                <label for="phone">Mobile phone <span aria-hidden="true">*</span></label>
-                                <input id="phone" name="phone" type="tel" autocomplete="tel" required
-                                    placeholder="555-555-5555" />
-                            </div>
-                        </div>
-
-                        <div class="grid grid-2" style="margin-top:12px">
-                            <div>
-                                <label for="email">Email <span aria-hidden="true">*</span></label>
-                                <input id="email" name="email" type="email" autocomplete="email" required />
-                            </div>
-                            <div>
-                                <label for="contact-pref">Contact preference</label>
-                                <select id="contact-pref" name="contactPreference">
-                                    <option value="">No preference</option>
-                                    <option>Email</option>
-                                    <option>Text</option>
-                                    <option>Call</option>
-                                </select>
-                            </div>
-                        </div>
-                    </fieldset>
-
-                    <!-- 3. Dietary and accessibility notes -->
-                    <fieldset>
-                        <legend>Dietary and accessibility</legend>
-
-                        <div class="grid grid-2">
-                            <div>
-                                <label for="diet">Dietary notes</label>
-                                <textarea id="diet" name="diet" rows="3"
-                                    placeholder="Allergies, halal, vegan, gluten free, spice level"></textarea>
-                            </div>
-
-                            <div>
-                                <label for="access">Accessibility needs</label>
-                                <textarea id="access" name="access" rows="3"
-                                    placeholder="Stroller or wheelchair space, seating height, quiet area"></textarea>
-                            </div>
-                        </div>
-                    </fieldset>
-
-                    <!-- 4. Extras -->
-                    <fieldset>
-                        <legend>Extras</legend>
-
-                        <div class="grid grid-3">
-                            <div>
-                                <input id="notify-wait" name="notifyWait" type="checkbox" />
-                                <label for="notify-wait">Notify me if an earlier time opens</label>
-                            </div>
-                            <div>
-                                <input id="save-info" name="saveInfo" type="checkbox" />
-                                <label for="save-info">Save my info for next time</label>
-                            </div>
-                            <div>
-                                <input id="promo-opt" name="promoOpt" type="checkbox" />
-                                <label for="promo-opt">Email me specials</label>
-                            </div>
-                        </div>
-                    </fieldset>
-
-                    <!-- 5. Notes for staff -->
-                    <fieldset>
-                        <legend>Notes for our team</legend>
-                        <label for="notes">Anything else we should know</label>
-                        <textarea id="notes" name="notes" rows="4"
-                            placeholder="Surprise dessert, high chair, split checks, other requests"></textarea>
-                    </fieldset>
-
-                    <!-- 6. Consent and submit -->
-                    <fieldset>
-                        <legend>Confirm</legend>
-
-                        <p class="meta" id="policy">
-                            By requesting a reservation you agree to our <a href="#terms">terms</a> and <a
-                                href="#privacy">privacy policy</a>.
-                            We will hold tables for 15 minutes after the scheduled time.
-                        </p>
-
-                        <div>
-                            <input id="agree" name="agree" type="checkbox" required aria-describedby="policy" />
-                            <label for="agree">I agree to the terms *</label>
-                        </div>
-
-                        <!-- Honeypot anti-spam field, hidden from assistive tech -->
-                        <div style="position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;"
-                            aria-hidden="true">
-                            <label for="company">Company</label>
-                            <input id="company" name="company" type="text" tabindex="-1" autocomplete="off" />
-                        </div>
-
-                        <div class="btn-row" style="margin-top:12px">
-                            <button type="submit" class="btn btn-primary">Request reservation</button>
-                            <button type="reset" class="btn btn-ghost">Clear form</button>
-                        </div>
-                    </fieldset>
-
-                    <!-- Error list region for future JS validation -->
-                    <div id="form-errors" class="meta" role="alert" aria-live="assertive"></div>
-                </form>
-
-                <noscript>
-                    <p class="meta">JavaScript is off, which is fine. Submit the form and we will confirm by email.</p>
-                </noscript>
+          <!-- Contact -->
+          <div class="inline-2">
+            <div class="field">
+              <label for="name">Full name *</label>
+              <input id="name" name="name" type="text" autocomplete="name" required />
+              <span class="error-text">Please enter your name.</span>
             </div>
-        </section>
-    </main>
 
-    <footer role="contentinfo" class="site-footer">
-        <div class="container">
-            <p><a href="#privacy" id="privacy">Privacy</a> | <a href="#terms" id="terms">Terms</a></p>
-            <p><small>&copy; <span id="year"></span> MAKO</small></p>
-        </div>
-    </footer>
+            <div class="field">
+              <label for="email">Email *</label>
+              <input id="email" name="email" type="email" autocomplete="email" required />
+              <span class="error-text">Please enter a valid email.</span>
+            </div>
+          </div>
 
-    <!-- Your global script will handle mobile nav, footer year, and optional validation later -->
-    <script src="script.js" defer></script>
+          <div class="field">
+            <label for="phone">Phone *</label>
+            <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="555-555-5555" required />
+            <small class="help" id="phone-help">We use this if we need to reach you quickly.</small>
+            <span class="error-text">Please enter a valid phone number.</span>
+          </div>
+
+          <!-- Date, time, party -->
+          <div class="inline-3">
+            <div class="field">
+              <label for="date">Date *</label>
+              <input id="date" name="date" type="date" required data-min-today="true" />
+              <span class="error-text">Pick a valid date.</span>
+            </div>
+
+            <div class="field">
+              <label for="time">Time *</label>
+              <select id="time" name="time" required>
+                <option value="">Select a time</option>
+                <option>11:00 AM</option>
+                <option>11:30 AM</option>
+                <option>12:00 PM</option>
+                <option>12:30 PM</option>
+                <option>1:00 PM</option>
+                <option>1:30 PM</option>
+                <option>2:00 PM</option>
+                <option>2:30 PM</option>
+                <option>3:00 PM</option>
+                <option>3:30 PM</option>
+                <option>4:00 PM</option>
+                <option>4:30 PM</option>
+                <option>5:00 PM</option>
+                <option>5:30 PM</option>
+                <option>6:00 PM</option>
+                <option>6:30 PM</option>
+                <option>7:00 PM</option>
+                <option>7:30 PM</option>
+                <option>8:00 PM</option>
+                <option>8:30 PM</option>
+                <option>9:00 PM</option>
+                <option>9:30 PM</option>
+                <option>10:00 PM</option>
+              </select>
+              <span class="error-text">Select a time.</span>
+            </div>
+
+            <div class="field">
+              <label for="party">Party size *</label>
+              <select id="party" name="party" required>
+                <option value="">Select</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+                <option value="13+">13+</option>
+              </select>
+              <span class="error-text">Select your party size.</span>
+            </div>
+          </div>
+
+          <!-- Preferences -->
+          <div class="inline-2">
+            <div class="field">
+              <label for="seating">Seating preference</label>
+              <select id="seating" name="seating">
+                <option value="">No preference</option>
+                <option value="indoor">Indoor</option>
+                <option value="outdoor">Outdoor</option>
+                <option value="booth">Booth</option>
+                <option value="bar">Bar</option>
+                <option value="quiet">Quiet area</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="occasion">Occasion</label>
+              <select id="occasion" name="occasion">
+                <option value="">None</option>
+                <option>Birthday</option>
+                <option>Anniversary</option>
+                <option>Business</option>
+                <option>Graduation</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Requests -->
+          <div class="field">
+            <label for="requests">Special requests</label>
+            <textarea id="requests" name="requests" rows="4" placeholder="Allergies, high chair, wheelchair space, surprise plate, etc."></textarea>
+            <small class="help">We do our best to honor requests.</small>
+          </div>
+
+          <!-- Accessibility -->
+          <div class="field">
+            <label for="access">Accessibility needs</label>
+            <textarea id="access" name="access" rows="3" placeholder="Ramp access, wider aisle, service animal space, or other notes."></textarea>
+          </div>
+
+          <!-- Opt-ins and terms -->
+          <div class="field">
+            <label class="checkbox">
+              <input id="newsletter" name="newsletter" type="checkbox" />
+              <span>Send me updates and specials by email</span>
+            </label>
+          </div>
+
+          <div class="field">
+            <label class="checkbox">
+              <input id="agree" name="agree" type="checkbox" required />
+              <span>I agree to the reservation policy *</span>
+            </label>
+            <small class="help">No-shows may be subject to a small hold fee at peak times.</small>
+            <span class="error-text">You must accept the policy to continue.</span>
+          </div>
+
+          <!-- Submit -->
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Confirm reservation</button>
+            <small class="help">Fields marked * are required.</small>
+          </div>
+        </form>
+      </div>
+
+      <!-- Tips card -->
+      <aside class="tips-card" aria-labelledby="tips-heading">
+        <h3 id="tips-heading">Booking tips</h3>
+        <ul>
+          <li>Same day booking ends at 6 pm.</li>
+          <li>Outdoor seating depends on weather.</li>
+          <li>For 13 or more, call so we can plan seating.</li>
+        </ul>
+      </aside>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <p><a href="#privacy">Privacy</a> | <a href="#accessibility">Accessibility</a></p>
+      <p><small>&copy; <span id="year"></span> MAKO</small></p>
+    </div>
+  </footer>
+
+  <script src="main.js" defer></script>
+  <script src="reservation.js" defer></script>
 </body>
-
 </html>
