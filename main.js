@@ -4,17 +4,11 @@
    ========================= */
 
 document.addEventListener("DOMContentLoaded", () => {
-  // ------------------------------
-  // Footer year auto-update
-  // ------------------------------
+  // ----- Set current year -----
   const yearEl = document.getElementById("year");
-  if (yearEl) {
-    yearEl.textContent = new Date().getFullYear();
-  }
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-  // ------------------------------
-  // Mobile nav toggle
-  // ------------------------------
+  // ----- Mobile navigation toggle -----
   const toggle = document.querySelector(".nav-toggle");
   const navList = document.querySelector(".nav-list");
 
@@ -25,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
       toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
     });
 
-    // Close nav if clicked outside
+    // Close menu if user clicks outside
     document.addEventListener("click", (e) => {
       if (
         navList.classList.contains("open") &&
@@ -37,23 +31,22 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    // Close when selecting a link
-    navList.querySelectorAll("a").forEach((link) =>
+    // Close menu after clicking a link
+    navList.querySelectorAll("a").forEach((link) => {
       link.addEventListener("click", () => {
         navList.classList.remove("open");
         toggle.setAttribute("aria-expanded", "false");
-      })
-    );
+      });
+    });
   }
 
-  // ------------------------------
-  // Reveal animations (used site-wide)
-  // ------------------------------
-  const prefersReducedMotion = window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  ).matches;
+  // ----- Reveal on scroll (fade-up animation) -----
+  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const revealEls = document.querySelectorAll(".reveal");
 
-  if (!prefersReducedMotion && "IntersectionObserver" in window) {
+  if (prefersReduced) {
+    revealEls.forEach((el) => el.classList.add("is-visible"));
+  } else if ("IntersectionObserver" in window) {
     const observer = new IntersectionObserver(
       (entries, obs) => {
         entries.forEach((entry) => {
@@ -66,10 +59,9 @@ document.addEventListener("DOMContentLoaded", () => {
       { threshold: 0.15 }
     );
 
-    document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+    revealEls.forEach((el) => observer.observe(el));
   } else {
-    document.querySelectorAll(".reveal").forEach((el) =>
-      el.classList.add("is-visible")
-    );
+    // Fallback for older browsers
+    revealEls.forEach((el) => el.classList.add("is-visible"));
   }
 });
