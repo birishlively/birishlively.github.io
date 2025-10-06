@@ -3,7 +3,7 @@
    File: css/home.css
    ========================= */
 
-/* Hero */
+/* ----- Hero Section ----- */
 .hero {
   padding-top: clamp(24px, 4vw, 48px);
 }
@@ -14,42 +14,42 @@
   gap: clamp(20px, 4vw, 32px);
 }
 
-/* Left copy */
-.kicker {
+/* Hero Text */
+.hero-copy .kicker {
   font-weight: 800;
-  font-size: clamp(1.25rem, 3.2vw, 2rem);
+  font-size: clamp(1.25rem, 3vw, 2rem);
   color: var(--red);
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
-.hero h1 {
+
+.hero-copy h1 {
   font-size: clamp(2.4rem, 7vw, 4.2rem);
   line-height: 1.05;
-  margin: 0 0 8px;
-  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+  letter-spacing: 0.6px;
 }
-.lede {
+
+.hero-copy .lede {
+  font-size: clamp(1.05rem, 2vw, 1.2rem);
   max-width: 50ch;
   color: #333;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
 }
+
 .btn-row {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
 }
-.btn-primary { background: var(--red); color: #fff; }
-.btn-primary:hover, .btn-primary:focus { filter: brightness(.95); }
-.btn-ghost { background: transparent; color: var(--text); border: 1px solid var(--grey); }
-.btn-ghost:hover, .btn-ghost:focus { border-color: var(--red); color: var(--red); }
 
-/* Right image */
+/* Hero Image */
 .hero-media {
   margin: 0;
   position: relative;
   display: grid;
   place-items: center;
 }
-.hero-media picture,
+
 .hero-media img {
   width: min(520px, 90%);
   aspect-ratio: 1;
@@ -59,44 +59,59 @@
   box-shadow: var(--shadow);
 }
 
-/* Optional subtle decorative ring */
 .hero-media::after {
   content: "";
   position: absolute;
   inset: -10px;
   border-radius: 50%;
-  border: 1px dashed rgba(0,0,0,.1);
+  border: 1px dashed rgba(0, 0, 0, 0.1);
   pointer-events: none;
 }
 
-/* Info strip */
+/* ----- Info Strip ----- */
 .info-strip {
   align-items: start;
 }
+
 .info {
   background: #fff;
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   padding: 18px;
+  transition: transform var(--trans), box-shadow var(--trans);
 }
-.info h2, .info h3 {
+
+.info:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.16);
+}
+
+.info h3 {
   font-size: 1.1rem;
+  color: var(--text);
   margin-bottom: 8px;
 }
-.info address { font-style: normal; }
 
-.hours-grid .meta { color: #555; }
-
-/* Red ribbon highlight if you want a promo later */
-.ribbon {
-  margin-top: 32px;
-  background: var(--red);
-  color: #fff;
-  padding: 22px;
-  border-radius: var(--radius);
+.info address {
+  font-style: normal;
+  line-height: 1.5;
 }
 
-/* Reveal on scroll for this page */
+.info a {
+  color: var(--red);
+  text-decoration: underline;
+}
+
+/* Hours table layout */
+.hours-grid {
+  grid-template-columns: 140px 1fr;
+  gap: 6px 12px;
+}
+.meta {
+  color: #555;
+}
+
+/* ----- Reveal on Scroll ----- */
 .hero .hero-copy,
 .hero .hero-media,
 .info-strip .info {
@@ -111,16 +126,27 @@
   transform: none;
 }
 
-/* Responsive */
+/* ----- Responsive Design ----- */
 @media (max-width: 1000px) {
-  .hero-grid { grid-template-columns: 1fr; }
-  .hero-media picture,
-  .hero-media img { width: min(440px, 85%); border-width: 8px; }
+  .hero-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .hero-media img {
+    width: min(440px, 85%);
+    border-width: 8px;
+  }
+  .btn-row {
+    justify-content: center;
+  }
 }
 
 @media (max-width: 600px) {
-  .btn-row { gap: 10px; }
-  .info { padding: 16px; }
-  .hero-media picture,
-  .hero-media img { width: 88%; border-width: 6px; }
+  .info {
+    padding: 16px;
+  }
+  .hero-media img {
+    width: 88%;
+    border-width: 6px;
+  }
 }
