@@ -1,102 +1,234 @@
 <!doctype html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>MAKO — Menu</title>
-    <link rel="stylesheet" href="css/base.css" />
-    <link rel="stylesheet" href="css/menu.css" />
-    <script src="js/main.js" defer></script>
-    <script src="js/menu.js" defer></script>
-
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MAKO | Menu</title>
+  <meta name="description" content="Browse MAKO’s menu. Mains, sides, drinks, and desserts with bold Trini flavors." />
+  <link rel="stylesheet" href="base.css" />
+  <link rel="stylesheet" href="menu.css" />
 </head>
 
-<body>
-    <a class="skip-link" href="#main">Skip to main content</a>
+<body id="menu-page">
+  <a class="skip-link" href="#main">Skip to main content</a>
 
-    <header role="banner" class="site-header">
-        <div class="container header-row">
-            <a class="brand" href="index.html" aria-label="MAKO home">
-                <span class="brand-mark" aria-hidden="true">M</span>
-                <span class="brand-name">MAKO</span>
-            </a>
+  <!-- Header -->
+  <header class="site-header" role="banner">
+    <div class="container header-row">
+      <a class="brand" href="index.html" aria-label="MAKO home">
+        <span class="brand-mark" aria-hidden="true">M</span>
+        <span class="brand-name">MAKO</span>
+      </a>
 
-            <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">
-                <span class="nav-toggle-label">Menu</span>
-            </button>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">
+        <span class="nav-toggle-label">Menu</span>
+      </button>
 
-            <nav id="primary-nav" class="site-nav" aria-label="Primary">
-                <ul class="nav-list">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="menu.html" aria-current="page">Menu</a></li>
-                    <li><a href="reservation.html">Reservation</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a class="btn btn-small" href="contact.html">Contact</a></li>
-                </ul>
-            </nav>
+      <nav id="primary-nav" class="site-nav" aria-label="Primary navigation">
+        <ul class="nav-list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="menu.html" aria-current="page">Menu</a></li>
+          <li><a href="reservation.html">Reservations</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a class="btn btn-small" href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main id="main">
+    <!-- Header section -->
+    <section class="container section reveal menu-hero">
+      <h1>Our Menu</h1>
+      <p>Pick a category to filter. Ask staff to adjust heat levels or flag allergens.</p>
+    </section>
+
+    <!-- Category chips -->
+    <section class="container section reveal">
+      <div class="menu-cats" role="tablist" aria-label="Menu categories">
+        <button class="chip" role="tab" aria-selected="true" data-cat="all" aria-controls="menuGrid">All</button>
+        <button class="chip" role="tab" aria-selected="false" data-cat="mains" aria-controls="menuGrid">Mains</button>
+        <button class="chip" role="tab" aria-selected="false" data-cat="sides" aria-controls="menuGrid">Sides</button>
+        <button class="chip" role="tab" aria-selected="false" data-cat="drinks" aria-controls="menuGrid">Drinks</button>
+        <button class="chip" role="tab" aria-selected="false" data-cat="desserts" aria-controls="menuGrid">Desserts</button>
+      </div>
+    </section>
+
+    <!-- Menu grid -->
+    <section class="container section reveal" aria-live="polite">
+      <div id="menuGrid" class="menu-grid">
+        <!-- Mains -->
+        <article class="item" data-cat="mains">
+          <img src="img/curry-goat.jpg" alt="Curry goat with roti and herbs" />
+          <div class="item-body">
+            <div class="item-title-row">
+              <h2 class="item-title">Curry Goat & Roti</h2>
+              <span class="item-price">$18</span>
+            </div>
+            <p class="item-desc">Slow cooked goat in a rich curry, served with flaky roti.</p>
+            <div class="tags">
+              <span class="tag spicy">spicy</span>
+              <span class="tag gf">gf option</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="item" data-cat="mains">
+          <img src="img/pelau.jpg" alt="Pelau rice with chicken, pigeon peas, and slaw" />
+          <div class="item-body">
+            <div class="item-title-row">
+              <h2 class="item-title">Pelau</h2>
+              <span class="item-price">$16</span>
+            </div>
+            <p class="item-desc">Caramelized rice with chicken and pigeon peas, served with slaw.</p>
+            <div class="tags">
+              <span class="tag">classic</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="item" data-cat="mains">
+          <img src="img/doubles.jpg" alt="Two doubles with channa and pepper sauce" />
+          <div class="item-body">
+            <div class="item-title-row">
+              <h2 class="item-title">Doubles</h2>
+              <span class="item-price">$9</span>
+            </div>
+            <p class="item-desc">Fried bara with curried channa and tamarind or pepper sauce.</p>
+            <div class="tags">
+              <span class="tag vg">vg</span>
+              <span class="tag spicy">spicy</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Sides -->
+        <article class="item" data-cat="sides">
+          <img src="img/callaloo.jpg" alt="Callaloo in a bowl" />
+          <div class="item-body">
+            <div class="item-title-row">
+              <h2 class="item-title">Callaloo</h2>
+              <span class="item-price">$6</span>
+            </div>
+            <p class="item-desc">Spinach and okra stew with coconut milk.</p>
+            <div class="tags">
+              <span class="tag vg">vg</span>
+              <span class="tag gf">gf</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="item" data-cat="sides">
+          <img src="img/plantain.jpg" alt="Fried ripe plantains" />
+          <div class="item-body">
+            <div class="item-title-row">
+              <h2 class="item-title">Fried Plantain</h2>
+              <span class="item-price">$5</span>
+            </div>
+            <p class="item-desc">Sweet ripe slices, lightly caramelized.</p>
+            <div class="tags">
+              <span class="tag vg">vg</span>
+              <span class="tag gf">gf</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Drinks -->
+        <article class="item" data-cat="drinks">
+          <img src="img/sorrel.jpg" alt="Glass of sorrel drink with ice" />
+          <div class="item-body">
+            <div class="item-title-row">
+              <h2 class="item-title">Sorrel</h2>
+              <span class="item-price">$4</span>
+            </div>
+            <p class="item-desc">Hibiscus, clove, and ginger, served chilled.</p>
+            <div class="tags">
+              <span class="tag gf">gf</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="item" data-cat="drinks">
+          <img src="img/peanut-punch.jpg" alt="Peanut punch in a tall glass" />
+          <div class="item-body">
+            <div class="item-title-row">
+              <h2 class="item-title">Peanut Punch</h2>
+              <span class="item-price">$5</span>
+            </div>
+            <p class="item-desc">Creamy peanut smoothie with a hint of spice.</p>
+            <div class="tags">
+              <span class="tag">rich</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Desserts -->
+        <article class="item" data-cat="desserts">
+          <img src="img/coconut-tart.jpg" alt="Slice of coconut tart" />
+          <div class="item-body">
+            <div class="item-title-row">
+              <h2 class="item-title">Coconut Tart</h2>
+              <span class="item-price">$6</span>
+            </div>
+            <p class="item-desc">Buttery crust with spiced coconut filling.</p>
+            <div class="tags">
+              <span class="tag">sweet</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="item" data-cat="desserts">
+          <img src="img/cassava-pone.jpg" alt="Cassava pone square on a plate" />
+          <div class="item-body">
+            <div class="item-title-row">
+              <h2 class="item-title">Cassava Pone</h2>
+              <span class="item-price">$6</span>
+            </div>
+            <p class="item-desc">Moist cassava cake with coconut and spices.</p>
+            <div class="tags">
+              <span class="tag gf">gf</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="container section reveal">
+      <h2 class="section-title">Frequently asked</h2>
+      <div class="accordion" id="menu-faq">
+        <div class="qa">
+          <button id="q1" class="qa-btn" aria-expanded="false" aria-controls="p1">Is everything spicy</button>
+          <div id="p1" class="panel" role="region" aria-labelledby="q1">
+            <p>We can adjust heat levels. Ask for mild, medium, or hot. Allergens are labeled on request.</p>
+          </div>
         </div>
-    </header>
-
-    <main id="main">
-        <section class="section">
-            <div class="container section-head">
-                <h1>Menu</h1>
-                <p class="section-sub">Replace these placeholders with real sections and items.</p>
-            </div>
-
-            <div class="container grid grid-3">
-                <article class="card">
-                    <img class="card-img" src="https://picsum.photos/800/450?10" alt="" />
-                    <div class="card-body">
-                        <h2>Starters</h2>
-                        <ul class="ticks" role="list">
-                            <li>Item name</li>
-                            <li>Item name</li>
-                            <li>Item name</li>
-                        </ul>
-                    </div>
-                </article>
-
-                <article class="card">
-                    <img class="card-img" src="https://picsum.photos/800/450?11" alt="" />
-                    <div class="card-body">
-                        <h2>Mains</h2>
-                        <ul class="ticks" role="list">
-                            <li>Item name</li>
-                            <li>Item name</li>
-                            <li>Item name</li>
-                        </ul>
-                    </div>
-                </article>
-
-                <article class="card">
-                    <img class="card-img" src="https://picsum.photos/800/450?12" alt="" />
-                    <div class="card-body">
-                        <h2>Drinks</h2>
-                        <ul class="ticks" role="list">
-                            <li>Item name</li>
-                            <li>Item name</li>
-                            <li>Item name</li>
-                        </ul>
-                    </div>
-                </article>
-            </div>
-
-            <div class="container" style="margin-top:24px">
-                <a class="btn btn-primary" href="#">Start online order</a>
-            </div>
-        </section>
-    </main>
-
-    <footer role="contentinfo" class="site-footer">
-        <div class="container">
-            <p><a href="#">Privacy</a> | <a href="#">Accessibility</a></p>
-            <p><small>&copy; <span id="year"></span> MAKO</small></p>
+        <div class="qa">
+          <button id="q2" class="qa-btn" aria-expanded="false" aria-controls="p2">Do you have vegetarian or vegan options</button>
+          <div id="p2" class="panel" role="region" aria-labelledby="q2">
+            <p>Yes. Look for the <strong>vg</strong> tag. Many sides are vegan and gluten friendly.</p>
+          </div>
         </div>
-    </footer>
+        <div class="qa">
+          <button id="q3" class="qa-btn" aria-expanded="false" aria-controls="p3">Do you offer catering</button>
+          <div id="p3" class="panel" role="region" aria-labelledby="q3">
+            <p>We cater small and mid sized events. Use the contact form or call for a quote.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
-    <script src="script.js" defer></script>
+  <!-- Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <p><a href="#privacy">Privacy</a> | <a href="#accessibility">Accessibility</a></p>
+      <p><small>&copy; <span id="year"></span> MAKO</small></p>
+    </div>
+  </footer>
+
+    <script src="main.js" defer></script>
+    <script src="menu.js" defer></script>
 </body>
-
 </html>
