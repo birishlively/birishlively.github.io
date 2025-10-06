@@ -1,8 +1,169 @@
-/* Contact page specific styles */
-#contact-page .contact-box .social {
-  display: flex; gap: 12px; flex-wrap: wrap;
+/* =========================
+   Contact CSS • MAKO
+   File: css/contact.css
+   ========================= */
+
+/* Layout */
+.contact-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: start;
 }
-#contact-page #contact-errors.has-errors {
-  background: #2b1c1c; border: 1px solid #5c2a2a; border-radius: 12px;
-  padding: 12px; margin-top: 12px;
+
+/* Cards */
+.contact-card,
+.form-card,
+.map-card {
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 20px;
+}
+
+.contact-card h2,
+.form-card h2 {
+  font-size: 1.25rem;
+  margin-bottom: 8px;
+}
+
+.contact-card p,
+.contact-card address {
+  margin: 6px 0;
+}
+
+.contact-card address {
+  font-style: normal;
+}
+
+/* Map placeholder */
+.map-card {
+  padding: 0;
+  overflow: hidden;
+}
+.map {
+  width: 100%;
+  min-height: 340px;
+  background: var(--muted);
+  display: grid;
+  place-items: center;
+  color: #666;
+  font-size: 0.95rem;
+}
+
+/* Form */
+.form-card form {
+  display: grid;
+  gap: 14px;
+}
+
+.field {
+  display: grid;
+  gap: 6px;
+}
+
+label {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea,
+select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--grey);
+  border-radius: 12px;
+  background: #fff;
+  color: var(--text);
+  font: inherit;
+  transition: border-color var(--trans), box-shadow var(--trans);
+}
+
+textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: 3px solid rgba(211, 47, 47, 0.2);
+  border-color: var(--red);
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.02);
+}
+
+/* Inline fields */
+.inline-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+/* Help and error text */
+.help {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.error-text {
+  display: none;
+  color: #b00020;
+  font-size: 0.95rem;
+}
+
+.field.invalid .error-text {
+  display: block;
+}
+
+/* Submit row */
+.form-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* Success message */
+.success {
+  display: none;
+  background: #ecfdf5;
+  border: 1px solid rgba(5, 150, 105, 0.2);
+  color: #065f46;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+}
+
+.success.show {
+  display: block;
+}
+
+/* Links */
+.contact-links a {
+  color: var(--red);
+  text-decoration: underline;
+}
+
+/* Reveal support */
+.contact-wrap > * {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: 700ms ease;
+}
+.is-visible .contact-wrap > * {
+  opacity: 1;
+  transform: none;
+}
+
+/* Responsive */
+@media (max-width: 960px) {
+  .contact-wrap {
+    grid-template-columns: 1fr;
+  }
+  .inline-2 {
+    grid-template-columns: 1fr;
+  }
+  .map { min-height: 280px; }
 }
