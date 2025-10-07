@@ -1,15 +1,10 @@
-/* =========================
-   Contact JS • MAKO
-   File: js/contact.js
-   ========================= */
-
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("contactForm");
   if (!form) return;
 
   const success = document.getElementById("success-msg");
 
-  // Helpers
+  // helpers
   const q = (sel, root = document) => root.querySelector(sel);
   const all = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 
@@ -33,13 +28,13 @@ document.addEventListener("DOMContentLoaded", () => {
     return valid;
   }
 
-  // Live validation on input and blur
+  // Lvalids
   all("input, textarea", form).forEach((el) => {
     el.addEventListener("input", () => validateField(el));
     el.addEventListener("blur", () => validateField(el));
   });
 
-  // Submit handler
+  // handler 4 submits
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
@@ -50,33 +45,32 @@ document.addEventListener("DOMContentLoaded", () => {
       message: q("#message", form)
     };
 
-    // Validate all
+    // mass validates
     const results = Object.values(inputs).map(validateField);
     const allValid = results.every(Boolean);
 
     if (!allValid) {
-      // Focus first invalid field
+      // 1st invlaid
       const firstInvalid = Object.values(inputs).find((i) => !validateField(i));
       if (firstInvalid) firstInvalid.focus();
       return;
     }
 
-    // Simulate async submission
+    //  async submission
     try {
-      // Replace this block with your real endpoint if needed
       await new Promise((res) => setTimeout(res, 500));
 
-      // Success UI
+      // success UI
       if (success) {
         success.classList.add("show");
         success.textContent = "Message sent successfully. We will get back to you soon.";
       }
 
       form.reset();
-      // Clear error states after reset
+      // clears errors 
       all(".field", form).forEach((f) => f.classList.remove("invalid"));
     } catch (err) {
-      // Fallback error notice
+      // fallback error notices
       if (success) {
         success.classList.add("show");
         success.textContent = "Sorry, something went wrong. Please try again.";
@@ -84,3 +78,4 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
