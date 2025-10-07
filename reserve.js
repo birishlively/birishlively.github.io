@@ -1,8 +1,3 @@
-/* =========================
-   Reservation JS • MAKO
-   File: js/reservation.js
-   ========================= */
-
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("reserveForm");
   if (!form) return;
@@ -15,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const agreeEl = document.getElementById("agree");
   const honeypot = document.getElementById("website"); // hidden spam trap
 
-  // Utils
+  // utils
   const q = (sel, root = document) => root.querySelector(sel);
   const all = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 
@@ -27,8 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return `${y}-${m}-${d}`;
   };
 
-  const parseYMD = (ymd) => {
-    // Construct as local time to avoid tz off-by-one
+  const parseYMD = (ymd) =
     const [y, m, d] = ymd.split("-").map(Number);
     return new Date(y, m - 1, d);
   };
@@ -56,8 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (picked < min) {
       setFieldState(dateEl, false, "Date cannot be in the past.");
       return false;
-    }
-    // Same day cutoff after 6 pm
+    
     const now = new Date();
     const isToday =
       picked.getFullYear() === now.getFullYear() &&
@@ -123,12 +116,12 @@ document.addEventListener("DOMContentLoaded", () => {
     return fn(value, input);
   }
 
-  // Set min date to today if requested
+  // min date to today if requested
   if (dateEl && dateEl.dataset.minToday === "true") {
     dateEl.min = todayYMD();
   }
 
-  // Live formatting for phone; keeps it simple
+  // live formatting for phone; 
   if (phoneEl) {
     phoneEl.addEventListener("input", () => {
       const raw = digits(phoneEl.value).slice(0, 10);
@@ -146,7 +139,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Live validation
+  // validation
   all("input, select, textarea", form).forEach((el) => {
     el.addEventListener("input", () => validateField(el));
     el.addEventListener("blur", () => validateField(el));
@@ -155,7 +148,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Disable time selection when same day cutoff applies
+  // disable time selection
   function updateTimeAvailability() {
     if (!dateEl || !timeEl) return;
     const v = dateEl.value;
@@ -184,14 +177,12 @@ document.addEventListener("DOMContentLoaded", () => {
     dateEl.addEventListener("change", updateTimeAvailability);
   }
 
-  // Submit handler
+  // handler
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
-
-    // Bot check
     if (honeypot && honeypot.value) return;
 
-    // Validate all fields
+    // Vvalids
     const inputs = {
       name: q("#name", form),
       email: q("#email", form),
@@ -226,7 +217,6 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // Simulate async submission
     try {
       form.setAttribute("aria-busy", "true");
       all("button, input, select, textarea", form).forEach((el) => (el.disabled = true));
@@ -239,7 +229,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       form.reset();
-      // Restore dynamic constraints
       if (dateEl && dateEl.dataset.minToday === "true") {
         dateEl.min = todayYMD();
       }
@@ -257,3 +246,4 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
