@@ -1,8 +1,3 @@
-/* =========================
-   About JS • MAKO
-   File: about.js
-   ========================= */
-
 document.addEventListener("DOMContentLoaded", () => {
   const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const statBox = document.querySelector(".stat");
@@ -13,11 +8,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const match = original.match(/[\d.]+/);
     const num = match ? parseFloat(match[0]) : 0;
 
-    // Keep any prefix or suffix like "★" or "+"
     const prefix = original.slice(0, original.indexOf(match ? match[0] : ""));
     const suffix = original.slice(original.indexOf(match ? match[0] : "") + (match ? match[0].length : 0));
 
-    // Decide decimal places: if original had a decimal, keep one
     const decimals = /\./.test(match ? match[0] : "") ? 1 : 0;
 
     return { el, original, prefix, suffix, target: num, decimals };
@@ -40,7 +33,6 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   if (prefersReduced) {
-    // Respect user setting; no animation
     return;
   }
 
@@ -58,3 +50,4 @@ document.addEventListener("DOMContentLoaded", () => {
     animate();
   }
 });
+
