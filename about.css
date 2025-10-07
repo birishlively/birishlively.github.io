@@ -1,17 +1,9 @@
-/* =========================
-   About CSS • MAKO
-   File: css/about.css
-   ========================= */
-
-/* Intro section */
 .lead {
   font-size: clamp(1.1rem, 2.4vw, 1.3rem);
   color: #333;
   max-width: 65ch;
   margin-top: 10px;
 }
-
-/* Stats row */
 .stat {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -33,7 +25,7 @@
   color: var(--red);
 }
 
-/* Team section */
+/* team */
 .team-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -73,7 +65,7 @@
   margin-top: 4px;
 }
 
-/* Section spacing */
+/*  spacing */
 .container h1,
 .container h2 {
   text-align: center;
@@ -87,7 +79,7 @@
   margin-top: 1.5em;
 }
 
-/* Reveal effect */
+/* reeals */
 .reveal > * {
   opacity: 0;
   transform: translateY(12px);
@@ -98,7 +90,6 @@
   transform: none;
 }
 
-/* Responsive */
 @media (max-width: 800px) {
   .stat {
     grid-template-columns: 1fr;
@@ -109,3 +100,4 @@
     height: 130px;
   }
 }
+
