@@ -1,9 +1,4 @@
-/* =========================
-   Home CSS • MAKO
-   File: css/home.css
-   ========================= */
-
-/* ----- Hero Section ----- */
+/* hero */
 .hero {
   padding-top: clamp(24px, 4vw, 48px);
 }
@@ -14,7 +9,7 @@
   gap: clamp(20px, 4vw, 32px);
 }
 
-/* Hero Text */
+/* htext */
 .hero-copy .kicker {
   font-weight: 800;
   font-size: clamp(1.25rem, 3vw, 2rem);
@@ -42,7 +37,7 @@
   flex-wrap: wrap;
 }
 
-/* Hero Image */
+/* himg */
 .hero-media {
   margin: 0;
   position: relative;
@@ -68,7 +63,7 @@
   pointer-events: none;
 }
 
-/* ----- Info Strip ----- */
+/* infostrip */
 .info-strip {
   align-items: start;
 }
@@ -102,7 +97,7 @@
   text-decoration: underline;
 }
 
-/* Hours table layout */
+/* hours layout*/
 .hours-grid {
   grid-template-columns: 140px 1fr;
   gap: 6px 12px;
@@ -111,7 +106,7 @@
   color: #555;
 }
 
-/* ----- Reveal on Scroll ----- */
+/* scroll reveal */
 .hero .hero-copy,
 .hero .hero-media,
 .info-strip .info {
@@ -126,7 +121,7 @@
   transform: none;
 }
 
-/* ----- Responsive Design ----- */
+/* responsives */
 @media (max-width: 1000px) {
   .hero-grid {
     grid-template-columns: 1fr;
@@ -150,3 +145,4 @@
     border-width: 6px;
   }
 }
+
