@@ -1,9 +1,6 @@
-/* =========================
-   Contact CSS • MAKO
-   File: css/contact.css
-   ========================= */
+/*EDI TED TI EDIT*/
 
-/* Layout */
+/* layout */
 .contact-wrap {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -11,7 +8,7 @@
   align-items: start;
 }
 
-/* Cards */
+/* cards */
 .contact-card,
 .form-card,
 .map-card {
@@ -36,7 +33,7 @@
   font-style: normal;
 }
 
-/* Map placeholder */
+/* map  */
 .map-card {
   padding: 0;
   overflow: hidden;
@@ -51,7 +48,7 @@
   font-size: 0.95rem;
 }
 
-/* Form */
+/* form */
 .form-card form {
   display: grid;
   gap: 14px;
@@ -95,14 +92,14 @@ select:focus {
   box-shadow: 0 0 0 1px rgba(0,0,0,0.02);
 }
 
-/* Inline fields */
+/* inline fields */
 .inline-2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
 }
 
-/* Help and error text */
+/* help and error text */
 .help {
   color: #666;
   font-size: 0.9rem;
@@ -118,14 +115,14 @@ select:focus {
   display: block;
 }
 
-/* Submit row */
+/* submit  */
 .form-actions {
   display: flex;
   gap: 10px;
   align-items: center;
 }
 
-/* Success message */
+/* success  */
 .success {
   display: none;
   background: #ecfdf5;
@@ -140,13 +137,13 @@ select:focus {
   display: block;
 }
 
-/* Links */
+/* links */
 .contact-links a {
   color: var(--red);
   text-decoration: underline;
 }
 
-/* Reveal support */
+/*  support */
 .contact-wrap > * {
   opacity: 0;
   transform: translateY(12px);
@@ -157,7 +154,7 @@ select:focus {
   transform: none;
 }
 
-/* Responsive */
+/* responsivee */
 @media (max-width: 960px) {
   .contact-wrap {
     grid-template-columns: 1fr;
@@ -167,3 +164,4 @@ select:focus {
   }
   .map { min-height: 280px; }
 }
+
