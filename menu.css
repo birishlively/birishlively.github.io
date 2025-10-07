@@ -1,9 +1,4 @@
-/* =========================
-   Menu CSS • MAKO
-   File: css/menu.css
-   ========================= */
-
-/* Header section */
+/* header  */
 .menu-hero {
   text-align: center;
   max-width: 70ch;
@@ -18,7 +13,7 @@
   margin-bottom: 16px;
 }
 
-/* Category chips */
+/* cater */
 .menu-cats {
   display: flex;
   justify-content: center;
@@ -49,14 +44,14 @@
   border-color: var(--red);
 }
 
-/* Grid of items */
+/* grid */
 .menu-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 24px;
 }
 
-/* Menu card */
+/* menu */
 .item {
   background: #fff;
   border-radius: var(--radius);
@@ -96,7 +91,7 @@
   white-space: nowrap;
 }
 
-/* Description and meta */
+/* desc */
 .item-desc {
   color: #444;
   font-size: .98rem;
@@ -118,7 +113,7 @@
 .tag.spicy { border-color: #d32f2f44; color: var(--red); }
 .tag.gf { border-color: #1a73e833; color: #1a73e8; }
 
-/* Divider option if you group sections */
+/*divide */
 .section-title {
   display: flex;
   align-items: center;
@@ -134,37 +129,8 @@
   opacity: .8;
 }
 
-/* FAQ accordion */
-.accordion {
-  max-width: 800px;
-  margin: 0 auto;
-}
-.accordion .qa {
-  margin-bottom: 10px;
-}
-.accordion button {
-  width: 100%;
-  text-align: left;
-  padding: 12px 14px;
-  border: 1px solid var(--grey);
-  background: #fff;
-  border-radius: 12px;
-  font-weight: 600;
-  transition: border-color var(--trans), color var(--trans);
-}
-.accordion button:hover,
-.accordion button:focus {
-  border-color: var(--red);
-  color: var(--red);
-}
-.accordion .panel {
-  display: none;
-  padding: 10px 2px 0;
-  color: #333;
-}
-.accordion .panel.open { display: block; }
 
-/* Reveal support */
+/* reveals */
 .menu-hero,
 .menu-cats,
 .menu-grid .item,
@@ -181,7 +147,8 @@
   transform: none;
 }
 
-/* Responsive */
+/* respon */
 @media (max-width: 720px) {
   .item img { height: 150px; }
 }
+
