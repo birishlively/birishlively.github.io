@@ -13,7 +13,7 @@
 <body id="reservation-page">
   <a class="skip-link" href="#main">Skip to main content</a>
 
-  <!-- Header -->
+  <!-- header -->
   <header class="site-header" role="banner">
     <div class="container header-row">
       <a class="brand" href="index.html" aria-label="MAKO home">
@@ -37,29 +37,28 @@
     </div>
   </header>
 
-  <!-- Main -->
+  <!-- main -->
   <main id="main">
-    <!-- Intro -->
+    <!-- introd -->
     <section class="container section reveal">
       <h1>Reserve a Table</h1>
       <p>We confirm by email within minutes. Same day bookings close at 6 pm. Parties of 13 or more should call.</p>
     </section>
 
-    <!-- Form and notes -->
+    <!-- forms -->
     <section class="container section reveal">
       <div class="form-card" role="region" aria-labelledby="reserve-heading">
         <h2 id="reserve-heading" class="visually-hidden">Reservation form</h2>
 
-        <!-- Success banner -->
+        <!-- Ssuck -->
         <div id="reserve-success" class="success" role="status" aria-live="polite">
           Reservation received. We will email a confirmation shortly.
         </div>
 
         <form id="reserveForm" novalidate>
-          <!-- Honeypot for bots -->
           <input type="text" id="website" name="website" class="visually-hidden" tabindex="-1" aria-hidden="true" autocomplete="off" />
 
-          <!-- Contact -->
+          <!-- contatcs -->
           <div class="inline-2">
             <div class="field">
               <label for="name">Full name *</label>
@@ -81,7 +80,7 @@
             <span class="error-text">Please enter a valid phone number.</span>
           </div>
 
-          <!-- Date, time, party -->
+          <!-- date, etc -->
           <div class="inline-3">
             <div class="field">
               <label for="date">Date *</label>
@@ -142,7 +141,7 @@
             </div>
           </div>
 
-          <!-- Preferences -->
+          <!-- pref -->
           <div class="inline-2">
             <div class="field">
               <label for="seating">Seating preference</label>
@@ -169,20 +168,20 @@
             </div>
           </div>
 
-          <!-- Requests -->
+          <!-- reqs -->
           <div class="field">
             <label for="requests">Special requests</label>
             <textarea id="requests" name="requests" rows="4" placeholder="Allergies, high chair, wheelchair space, surprise plate, etc."></textarea>
             <small class="help">We do our best to honor requests.</small>
           </div>
 
-          <!-- Accessibility -->
+          <!-- acc -->
           <div class="field">
             <label for="access">Accessibility needs</label>
             <textarea id="access" name="access" rows="3" placeholder="Ramp access, wider aisle, service animal space, or other notes."></textarea>
           </div>
 
-          <!-- Opt-ins and terms -->
+          <!-- terms i need this more spaced btw -->
           <div class="field">
             <label class="checkbox">
               <input id="newsletter" name="newsletter" type="checkbox" />
@@ -199,7 +198,7 @@
             <span class="error-text">You must accept the policy to continue.</span>
           </div>
 
-          <!-- Submit -->
+          <!-- sub -->
           <div class="form-actions">
             <button type="submit" class="btn btn-primary">Confirm reservation</button>
             <small class="help">Fields marked * are required.</small>
@@ -207,7 +206,7 @@
         </form>
       </div>
 
-      <!-- Tips card -->
+      <!-- tips (maybe deete?) -->
       <aside class="tips-card" aria-labelledby="tips-heading">
         <h3 id="tips-heading">Booking tips</h3>
         <ul>
@@ -219,7 +218,7 @@
     </section>
   </main>
 
-  <!-- Footer -->
+  <!-- footer jeezx cant get rid of this guy -->
   <footer class="site-footer" role="contentinfo">
     <div class="container">
       <p><a href="#privacy">Privacy</a> | <a href="#accessibility">Accessibility</a></p>
@@ -231,3 +230,4 @@
   <script src="reservation.js" defer></script>
 </body>
 </html>
+
