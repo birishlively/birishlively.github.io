@@ -1,10 +1,4 @@
-/* =========================
-   Menu JS • MAKO
-   File: js/menu.js
-   ========================= */
-
 document.addEventListener("DOMContentLoaded", () => {
-  // ----- Category chips -----
   const tablist = document.querySelector(".menu-cats");
   const chips = Array.from(document.querySelectorAll('.menu-cats .chip[role="tab"]'));
   const grid = document.getElementById("menuGrid");
@@ -42,20 +36,16 @@ document.addEventListener("DOMContentLoaded", () => {
     filterGrid(chip.dataset.cat);
     if (focus) chip.focus();
   }
-
-  // Init selected state, default to first chip
   const initial = chips.find((c) => c.getAttribute("aria-selected") === "true") || chips[0];
   if (initial) {
     chips.forEach((c) => (c.tabIndex = c === initial ? 0 : -1));
     filterGrid(initial.dataset.cat);
   }
 
-  // Click to activate
   chips.forEach((chip) => {
     chip.addEventListener("click", () => activate(chip));
   });
 
-  // Keyboard navigation within the tablist
   if (tablist) {
     tablist.addEventListener("keydown", (e) => {
       const currentIndex = chips.indexOf(document.activeElement);
@@ -81,17 +71,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
-
-  // ----- FAQ accordion -----
-  const faq = document.getElementById("menu-faq");
-  if (faq) {
-    const qas = Array.from(faq.querySelectorAll(".qa"));
-    qas.forEach((qa) => {
-      const btn = qa.querySelector("button");
-      const panel = qa.querySelector(".panel");
-      if (!btn || !panel) return;
-
-      // Start closed
       btn.setAttribute("aria-expanded", "false");
       panel.classList.remove("open");
       panel.hidden = true;
@@ -114,3 +93,4 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
