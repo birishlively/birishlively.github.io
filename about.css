@@ -1,8 +1,12 @@
-.lead {
-  font-size: clamp(1.1rem, 2.4vw, 1.3rem);
-  color: #333;
-  max-width: 65ch;
-  margin-top: 10px;
+  .lead {
+    font-size: clamp(1.1rem, 2.4vw, 1.3rem);
+    color: #333;
+    max-width: 65ch;
+    margin-top: 10px;
+    text-align: center; /* added this line */
+    margin-left: auto;  /* centers block within container */
+    margin-right: auto; /* centers block within container */
+  }
 }
 .stat {
   display: grid;
