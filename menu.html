@@ -12,7 +12,6 @@
 <body id="menu-page">
   <a class="skip-link" href="#main">Skip to main content</a>
 
-  <!-- head -->
   <header class="site-header" role="banner">
     <div class="container header-row">
       <a class="brand" href="index.html" aria-label="MAKO home">
@@ -36,14 +35,12 @@
     </div>
   </header>
 
-  <!-- main -->
   <main id="main">
     <section class="container section reveal menu-hero">
       <h1>Our Menu</h1>
-      <p>this section is a little (more than a little) broken</p>
+      <p>Classic Trini mains, street food, sides, drinks, and sweets. Filter by category below.</p>
     </section>
 
-    <!-- cater -->
     <section class="container section reveal">
       <div class="menu-cats" role="tablist" aria-label="Menu categories">
         <button class="chip" role="tab" aria-selected="true" data-cat="all" aria-controls="menuGrid">All</button>
@@ -54,119 +51,224 @@
       </div>
     </section>
 
-    <!--  grid -->
     <section class="container section reveal" aria-live="polite">
       <div id="menuGrid" class="menu-grid">
-        <!-- mains -->
+        <!-- MAINS -->
         <article class="item" data-cat="mains">
-          <img src="img/curry-goat.jpg" alt="lorem ipsum" />
+          <img src="img/curry-goat.jpg" alt="Curry goat with paratha roti" loading="lazy" />
           <div class="item-body">
             <div class="item-title-row">
-              <h2 class="item-title">Curry Goat & Roti</h2>
+              <h2 class="item-title">Curry Goat with Roti</h2>
               <span class="item-price">$18</span>
             </div>
-            <p class="item-desc">Slow cooked goat in a rich curry, served with flaky roti.</p>
-            </div>
+            <p class="item-desc">Slow cooked goat in a deep, toasted-masala curry, served with buss-up-shut roti.</p>
           </div>
         </article>
 
         <article class="item" data-cat="mains">
-          <img src="img/pelau.jpg" alt="lorem ipsum" />
+          <img src="img/pelau.jpg" alt="Pelau with slaw" loading="lazy" />
           <div class="item-body">
             <div class="item-title-row">
               <h2 class="item-title">Pelau</h2>
               <span class="item-price">$16</span>
             </div>
-            <p class="item-desc">Caramelized rice with chicken and pigeon peas, served with slaw.</p>
+            <p class="item-desc">Caramelized rice with chicken, pigeon peas, and coconut milk. Comes with slaw.</p>
           </div>
         </article>
 
         <article class="item" data-cat="mains">
-          <img src="img/doubles.jpg" alt="lorem ipsum" />
+          <img src="img/stew-chicken.jpg" alt="Trinidad stew chicken" loading="lazy" />
           <div class="item-body">
             <div class="item-title-row">
-              <h2 class="item-title">Doubles</h2>
-              <span class="item-price">$9</span>
+              <h2 class="item-title">Trini Stew Chicken</h2>
+              <span class="item-price">$17</span>
             </div>
-            <p class="item-desc">Fried bara with curried channa and tamarind or pepper sauce.</p>
+            <p class="item-desc">Browned sugar, aromatics, and thyme. Served with rice and callaloo.</p>
           </div>
         </article>
 
-        <!-- sides -->
+        <article class="item" data-cat="mains">
+          <img src="img/bake-and-shark.jpg" alt="Bake and Shark sandwich" loading="lazy" />
+          <div class="item-body">
+            <div class="item-title-row">
+              <h2 class="item-title">Bake and Shark</h2>
+              <span class="item-price">$15</span>
+            </div>
+            <p class="item-desc">Fried bake stuffed with crispy fish, shadow beni, tamarind, and pepper sauce.</p>
+          </div>
+        </article>
+
+        <article class="item" data-cat="mains">
+          <img src="img/channa-aloo-roti.jpg" alt="Channa and aloo roti" loading="lazy" />
+          <div class="item-body">
+            <div class="item-title-row">
+              <h2 class="item-title">Channa & Aloo Roti</h2>
+              <span class="item-price">$13</span>
+            </div>
+            <p class="item-desc">Curried chickpeas and potato wrapped in dhalpuri roti.</p>
+          </div>
+        </article>
+
+        <article class="item" data-cat="mains">
+          <img src="img/doubles.jpg" alt="Doubles with tamarind" loading="lazy" />
+          <div class="item-body">
+            <div class="item-title-row">
+              <h2 class="item-title">Doubles (2)</h2>
+              <span class="item-price">$9</span>
+            </div>
+            <p class="item-desc">Two bara filled with curried channa. Tamarind and pepper on the side.</p>
+          </div>
+        </article>
+
+        <!-- SIDES -->
         <article class="item" data-cat="sides">
-          <img src="img/callaloo.jpg" alt="lorem ipsum" />
+          <img src="img/callaloo.jpg" alt="Callaloo side" loading="lazy" />
           <div class="item-body">
             <div class="item-title-row">
               <h2 class="item-title">Callaloo</h2>
               <span class="item-price">$6</span>
             </div>
-            <p class="item-desc">Spinach and okra stew with coconut milk.</p>
+            <p class="item-desc">Dasheen leaves, okra, and coconut milk, blended silky.</p>
           </div>
         </article>
 
         <article class="item" data-cat="sides">
-          <img src="img/plantain.jpg" alt="lorem ipsum" />
+          <img src="img/plantain.jpg" alt="Fried ripe plantain" loading="lazy" />
           <div class="item-body">
             <div class="item-title-row">
               <h2 class="item-title">Fried Plantain</h2>
               <span class="item-price">$5</span>
             </div>
-            <p class="item-desc">Sweet ripe slices, lightly caramelized.</p>
+            <p class="item-desc">Ripe slices, caramelized edges, pinch of salt.</p>
           </div>
         </article>
 
-        <!-- drinks -->
+        <article class="item" data-cat="sides">
+          <img src="img/macaroni-pie.jpg" alt="Macaroni pie" loading="lazy" />
+          <div class="item-body">
+            <div class="item-title-row">
+              <h2 class="item-title">Macaroni Pie</h2>
+              <span class="item-price">$6</span>
+            </div>
+            <p class="item-desc">Cheesy baked casserole with mustard and herbs.</p>
+          </div>
+        </article>
+
+        <article class="item" data-cat="sides">
+          <img src="img/pholourie.jpg" alt="Pholourie with chutney" loading="lazy" />
+          <div class="item-body">
+            <div class="item-title-row">
+              <h2 class="item-title">Pholourie</h2>
+              <span class="item-price">$7</span>
+            </div>
+            <p class="item-desc">Golden split-pea fritters with mango chutney.</p>
+          </div>
+        </article>
+
+        <article class="item" data-cat="sides">
+          <img src="img/aloo-pie.jpg" alt="Aloo pie street snack" loading="lazy" />
+          <div class="item-body">
+            <div class="item-title-row">
+              <h2 class="item-title">Aloo Pie</h2>
+              <span class="item-price">$7</span>
+            </div>
+            <p class="item-desc">Fried dough filled with seasoned potato, chutney on the side.</p>
+          </div>
+        </article>
+
+        <!-- DRINKS -->
         <article class="item" data-cat="drinks">
-          <img src="img/sorrel.jpg" alt="lorem ipsum" />
+          <img src="img/sorrel.jpg" alt="Sorrel drink" loading="lazy" />
           <div class="item-body">
             <div class="item-title-row">
               <h2 class="item-title">Sorrel</h2>
               <span class="item-price">$4</span>
             </div>
-            <p class="item-desc">Hibiscus, clove, and ginger, served chilled.</p>
+            <p class="item-desc">Hibiscus with clove and ginger, served chilled.</p>
           </div>
         </article>
 
         <article class="item" data-cat="drinks">
-          <img src="img/peanut-punch.jpg" alt="lorem ipsum" />
+          <img src="img/peanut-punch.jpg" alt="Peanut punch" loading="lazy" />
           <div class="item-body">
             <div class="item-title-row">
               <h2 class="item-title">Peanut Punch</h2>
               <span class="item-price">$5</span>
             </div>
-            <p class="item-desc">Creamy peanut smoothie with a hint of spice.</p>
+            <p class="item-desc">Creamy peanut smoothie, nutmeg, and milk.</p>
           </div>
         </article>
 
-        <!-- desserts -->
+        <article class="item" data-cat="drinks">
+          <img src="img/mauby.jpg" alt="Mauby drink" loading="lazy" />
+          <div class="item-body">
+            <div class="item-title-row">
+              <h2 class="item-title">Mauby</h2>
+              <span class="item-price">$4</span>
+            </div>
+            <p class="item-desc">Bark brew with anise and cinnamon. Bitter-sweet and refreshing.</p>
+          </div>
+        </article>
+
+        <article class="item" data-cat="drinks">
+          <img src="img/seamoss.jpg" alt="Sea moss punch" loading="lazy" />
+          <div class="item-body">
+            <div class="item-title-row">
+              <h2 class="item-title">Sea Moss Punch</h2>
+              <span class="item-price">$5</span>
+            </div>
+            <p class="item-desc">Blended Irish moss with milk and spices.</p>
+          </div>
+        </article>
+
+        <!-- DESSERTS -->
         <article class="item" data-cat="desserts">
-          <img src="img/coconut-tart.jpg" alt="lorem ipsum" />
+          <img src="img/coconut-tart.jpg" alt="Coconut tart" loading="lazy" />
           <div class="item-body">
             <div class="item-title-row">
               <h2 class="item-title">Coconut Tart</h2>
               <span class="item-price">$6</span>
             </div>
-            <p class="item-desc">Buttery crust with spiced coconut filling.</p>
+            <p class="item-desc">Buttery crust, spiced coconut filling.</p>
           </div>
         </article>
 
         <article class="item" data-cat="desserts">
-          <img src="img/cassava-pone.jpg" alt="lorem ipsum" />
+          <img src="img/cassava-pone.jpg" alt="Cassava pone" loading="lazy" />
           <div class="item-body">
             <div class="item-title-row">
               <h2 class="item-title">Cassava Pone</h2>
               <span class="item-price">$6</span>
             </div>
-            <p class="item-desc">Moist cassava cake with coconut and spices.</p>
+            <p class="item-desc">Moist grated cassava cake with coconut and warm spice.</p>
+          </div>
+        </article>
+
+        <article class="item" data-cat="desserts">
+          <img src="img/kurma.jpg" alt="Kurma sticks" loading="lazy" />
+          <div class="item-body">
+            <div class="item-title-row">
+              <h2 class="item-title">Kurma</h2>
+              <span class="item-price">$5</span>
+            </div>
+            <p class="item-desc">Crisp spiced dough sticks dusted with sugar.</p>
+          </div>
+        </article>
+
+        <article class="item" data-cat="desserts">
+          <img src="img/coconut-sugar-cake.jpg" alt="Coconut sugar cake" loading="lazy" />
+          <div class="item-body">
+            <div class="item-title-row">
+              <h2 class="item-title">Coconut Sugar Cake</h2>
+              <span class="item-price">$5</span>
+            </div>
+            <p class="item-desc">Bright coconut squares, vanilla and spice.</p>
           </div>
         </article>
       </div>
     </section>
-
-
   </main>
 
-  <!-- foooter (every every page sjjeez -->
   <footer class="site-footer" role="contentinfo">
     <div class="container">
       <p><a href="#privacy">Privacy</a> | <a href="#accessibility">Accessibility</a></p>
@@ -174,10 +276,7 @@
     </div>
   </footer>
 
-    <script src="main.js" defer></script>
-    <script src="menu.js" defer></script>
+  <script src="main.js" defer></script>
+  <script src="menu.js" defer></script>
 </body>
 </html>
-
-
-

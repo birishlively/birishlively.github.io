@@ -127,6 +127,29 @@ textarea:disabled {
   opacity: 1;
   transform: none;
 }
+/* tighten spacing between intro and form */
+#reservation-page .section:first-of-type {
+  padding-bottom: 8px;   /* was likely larger via base.css */
+  margin-bottom: 8px;
+}
+
+#reservation-page .section + .section {
+  margin-top: 0;         /* kill extra top margin on the next section */
+  padding-top: 8px;
+}
+
+/* keep the intro paragraph from adding extra space */
+#reservation-page .section:first-of-type p {
+  margin-bottom: 10px;
+}
+
+/* ensure the card itself doesn't introduce a gap */
+#reservation-page .form-card {
+  margin-top: 0;
+}
 
 @media (max-width: 900px) { .inline-3 { grid-template-columns: 1fr; } }
-@medi
+@media (max-width: 720px) {
+  .inline-2 { grid-template-columns: 1fr; }
+  .form-card, .tips-card { padding: 18px; }
+}

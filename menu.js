@@ -36,6 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
     filterGrid(chip.dataset.cat);
     if (focus) chip.focus();
   }
+
   const initial = chips.find((c) => c.getAttribute("aria-selected") === "true") || chips[0];
   if (initial) {
     chips.forEach((c) => (c.tabIndex = c === initial ? 0 : -1));
@@ -71,26 +72,4 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
-      btn.setAttribute("aria-expanded", "false");
-      panel.classList.remove("open");
-      panel.hidden = true;
-
-      const toggle = () => {
-        const open = btn.getAttribute("aria-expanded") === "true";
-        const next = !open;
-        btn.setAttribute("aria-expanded", String(next));
-        panel.classList.toggle("open", next);
-        panel.hidden = !next;
-      };
-
-      btn.addEventListener("click", toggle);
-      btn.addEventListener("keydown", (e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          toggle();
-        }
-      });
-    });
-  }
 });
-
