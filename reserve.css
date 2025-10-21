@@ -27,14 +27,11 @@
   gap: 12px;
 }
 
-.field {
-  display: grid;
-  gap: 6px;
-}
-label {
-  font-weight: 600;
-  font-size: 0.95rem;
-}
+.field { display: grid; gap: 6px; }
+.field--spaced { margin-top: 8px; } /* extra breathing room for checkboxes */
+
+label { font-weight: 600; font-size: 0.95rem; }
+
 input[type="text"],
 input[type="email"],
 input[type="tel"],
@@ -51,6 +48,7 @@ select {
   transition: border-color var(--trans), box-shadow var(--trans);
 }
 textarea { min-height: 120px; resize: vertical; }
+
 input:focus,
 textarea:focus,
 select:focus {
@@ -71,15 +69,8 @@ select:focus {
   accent-color: var(--red);
 }
 
-.help {
-  color: #666;
-  font-size: 0.9rem;
-}
-.error-text {
-  display: none;
-  color: #b00020;
-  font-size: 0.95rem;
-}
+.help { color: #666; font-size: 0.9rem; }
+.error-text { display: none; color: #b00020; font-size: 0.95rem; }
 .field.invalid .error-text { display: block; }
 
 .success {
@@ -98,19 +89,24 @@ select:focus {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-top: 4px;
+  margin-top: 6px;
 }
 
 select {
   -webkit-appearance: none;
-  background-image: linear-gradient(45deg, transparent 50%, #999 50%), 
-                    linear-gradient(135deg, #999 50%, transparent 50%),
-                    linear-gradient(to right, #ddd, #ddd);
-  background-position: calc(100% - 18px) calc(1em - 2px), calc(100% - 12px) calc(1em - 2px), calc(100% - 2.2rem) 50%;
+  background-image:
+    linear-gradient(45deg, transparent 50%, #999 50%),
+    linear-gradient(135deg, #999 50%, transparent 50%),
+    linear-gradient(to right, #ddd, #ddd);
+  background-position:
+    calc(100% - 18px) calc(1em - 2px),
+    calc(100% - 12px) calc(1em - 2px),
+    calc(100% - 2.2rem) 50%;
   background-size: 6px 6px, 6px 6px, 1px 1.75em;
   background-repeat: no-repeat;
   padding-right: 2.6rem;
 }
+
 input:disabled,
 select:disabled,
 textarea:disabled {
@@ -119,23 +115,18 @@ textarea:disabled {
   cursor: not-allowed;
 }
 
-.form-card,
-.tips-card {
+/* reveal fix: scope to .reveal parent you already use */
+.reveal > .form-card,
+.reveal > .tips-card {
   opacity: 0;
   transform: translateY(12px);
   transition: 700ms ease;
 }
-.is-visible .form-card,
-.is-visible .tips-card {
+.reveal.is-visible > .form-card,
+.reveal.is-visible > .tips-card {
   opacity: 1;
   transform: none;
 }
 
-@media (max-width: 900px) {
-  .inline-3 { grid-template-columns: 1fr; }
-}
-@media (max-width: 720px) {
-  .inline-2 { grid-template-columns: 1fr; }
-  .form-card, .tips-card { padding: 18px; }
-}
-
+@media (max-width: 900px) { .inline-3 { grid-template-columns: 1fr; } }
+@medi

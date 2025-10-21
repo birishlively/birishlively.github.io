@@ -1,249 +1,135 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("reserveForm");
-  if (!form) return;
+.form-card {
+  max-width: 820px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 22px;
+}
+.tips-card {
+  max-width: 820px;
+  margin: 16px auto 0;
+  background: var(--muted);
+  border-radius: var(--radius);
+  padding: 18px;
+  box-shadow: var(--shadow);
+}
+.tips-card h3 { margin-top: 0; }
 
-  const success = document.getElementById("reserve-success");
-  const dateEl = document.getElementById("date");
-  const timeEl = document.getElementById("time");
-  const partyEl = document.getElementById("party");
-  const phoneEl = document.getElementById("phone");
-  const agreeEl = document.getElementById("agree");
-  const honeypot = document.getElementById("website"); // hidden spam trap
+.inline-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.inline-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+}
 
-  // utils
-  const q = (sel, root = document) => root.querySelector(sel);
-  const all = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+.field { display: grid; gap: 6px; }
+.field--spaced { margin-top: 8px; } /* extra breathing room for checkboxes */
 
-  const todayYMD = () => {
-    const now = new Date();
-    const y = now.getFullYear();
-    const m = String(now.getMonth() + 1).padStart(2, "0");
-    const d = String(now.getDate()).padStart(2, "0");
-    return `${y}-${m}-${d}`;
-  };
+label { font-weight: 600; font-size: 0.95rem; }
 
-  const parseYMD = (ymd) =
-    const [y, m, d] = ymd.split("-").map(Number);
-    return new Date(y, m - 1, d);
-  };
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+textarea,
+select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--grey);
+  border-radius: 12px;
+  background: #fff;
+  color: var(--text);
+  font: inherit;
+  transition: border-color var(--trans), box-shadow var(--trans);
+}
+textarea { min-height: 120px; resize: vertical; }
 
-  const isValidEmail = (v) => /^\S+@\S+\.\S+$/.test(v.trim());
-  const digits = (v) => v.replace(/\D/g, "");
-  const isValidPhone = (v) => digits(v).length >= 10;
+input:focus,
+textarea:focus,
+select:focus {
+  outline: 3px solid rgba(211, 47, 47, 0.2);
+  border-color: var(--red);
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.02);
+}
 
-  function setFieldState(input, ok, overrideMsg) {
-    const field = input.closest(".field");
-    if (!field) return;
-    field.classList.toggle("invalid", !ok);
-    const err = field.querySelector(".error-text");
-    if (err && overrideMsg) err.textContent = overrideMsg;
-  }
+.checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+.checkbox input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--red);
+}
 
-  function validateDate() {
-    const v = dateEl.value;
-    if (!v) {
-      setFieldState(dateEl, false);
-      return false;
-    }
-    const picked = parseYMD(v);
-    const min = parseYMD(dateEl.min || todayYMD());
-    if (picked < min) {
-      setFieldState(dateEl, false, "Date cannot be in the past.");
-      return false;
-    
-    const now = new Date();
-    const isToday =
-      picked.getFullYear() === now.getFullYear() &&
-      picked.getMonth() === now.getMonth() &&
-      picked.getDate() === now.getDate();
+.help { color: #666; font-size: 0.9rem; }
+.error-text { display: none; color: #b00020; font-size: 0.95rem; }
+.field.invalid .error-text { display: block; }
 
-    if (isToday && now.getHours() >= 18) {
-      setFieldState(
-        dateEl,
-        false,
-        "Same day bookings close at 6 pm. Please pick tomorrow or later."
-      );
-      return false;
-    }
-    setFieldState(dateEl, true);
-    return true;
-  }
+.success {
+  display: none;
+  background: #ecfdf5;
+  border: 1px solid rgba(5, 150, 105, 0.25);
+  color: #065f46;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  margin-bottom: 12px;
+}
+.success.show { display: block; }
 
-  const validators = {
-    name: (v, el) => {
-      const ok = v.trim().length >= 2;
-      setFieldState(el, ok);
-      return ok;
-    },
-    email: (v, el) => {
-      const ok = isValidEmail(v);
-      setFieldState(el, ok);
-      return ok;
-    },
-    phone: (v, el) => {
-      const ok = isValidPhone(v);
-      setFieldState(el, ok);
-      return ok;
-    },
-    time: (v, el) => {
-      const ok = v.trim().length > 0;
-      setFieldState(el, ok);
-      return ok;
-    },
-    party: (v, el) => {
-      const ok = v.trim().length > 0 && v !== "13+";
-      setFieldState(
-        el,
-        ok,
-        v === "13+"
-          ? "For 13 or more, please call so we can plan seating."
-          : null
-      );
-      return ok;
-    },
-    agree: (_, el) => {
-      const ok = el.checked;
-      setFieldState(el, ok);
-      return ok;
-    },
-  };
+.form-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 6px;
+}
 
-  function validateField(input) {
-    const { name, value } = input;
-    if (name === "date") return validateDate();
-    const fn = validators[name];
-    if (!fn) return true;
-    return fn(value, input);
-  }
+select {
+  -webkit-appearance: none;
+  background-image:
+    linear-gradient(45deg, transparent 50%, #999 50%),
+    linear-gradient(135deg, #999 50%, transparent 50%),
+    linear-gradient(to right, #ddd, #ddd);
+  background-position:
+    calc(100% - 18px) calc(1em - 2px),
+    calc(100% - 12px) calc(1em - 2px),
+    calc(100% - 2.2rem) 50%;
+  background-size: 6px 6px, 6px 6px, 1px 1.75em;
+  background-repeat: no-repeat;
+  padding-right: 2.6rem;
+}
 
-  // min date to today if requested
-  if (dateEl && dateEl.dataset.minToday === "true") {
-    dateEl.min = todayYMD();
-  }
+input:disabled,
+select:disabled,
+textarea:disabled {
+  background: #f8f8f8;
+  color: #9ca3af;
+  cursor: not-allowed;
+}
 
-  // live formatting for phone; 
-  if (phoneEl) {
-    phoneEl.addEventListener("input", () => {
-      const raw = digits(phoneEl.value).slice(0, 10);
-      const parts = [];
-      if (raw.length >= 3) parts.push(raw.slice(0, 3));
-      if (raw.length >= 6) parts.push(raw.slice(3, 6));
-      if (raw.length > 6) parts.push(raw.slice(6));
-      phoneEl.value =
-        raw.length <= 3
-          ? raw
-          : raw.length <= 6
-          ? `(${raw.slice(0, 3)}) ${raw.slice(3)}`
-          : `(${raw.slice(0, 3)}) ${raw.slice(3, 6)}-${raw.slice(6)}`;
-      validateField(phoneEl);
-    });
-  }
+/* reveal fix: scope to .reveal parent you already use */
+.reveal > .form-card,
+.reveal > .tips-card {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: 700ms ease;
+}
+.reveal.is-visible > .form-card,
+.reveal.is-visible > .tips-card {
+  opacity: 1;
+  transform: none;
+}
 
-  // validation
-  all("input, select, textarea", form).forEach((el) => {
-    el.addEventListener("input", () => validateField(el));
-    el.addEventListener("blur", () => validateField(el));
-    if (el === dateEl) {
-      el.addEventListener("change", validateDate);
-    }
-  });
-
-  // disable time selection
-  function updateTimeAvailability() {
-    if (!dateEl || !timeEl) return;
-    const v = dateEl.value;
-    if (!v) return;
-    const picked = parseYMD(v);
-    const now = new Date();
-    const isToday =
-      picked.getFullYear() === now.getFullYear() &&
-      picked.getMonth() === now.getMonth() &&
-      picked.getDate() === now.getDate();
-
-    const cutoff = now.getHours() >= 18;
-    timeEl.disabled = isToday && cutoff;
-    if (timeEl.disabled) {
-      setFieldState(
-        timeEl,
-        false,
-        "Same day bookings close at 6 pm. Time selection is disabled."
-      );
-    } else {
-      setFieldState(timeEl, true);
-    }
-  }
-  if (dateEl) {
-    updateTimeAvailability();
-    dateEl.addEventListener("change", updateTimeAvailability);
-  }
-
-  // handler
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    if (honeypot && honeypot.value) return;
-
-    // Vvalids
-    const inputs = {
-      name: q("#name", form),
-      email: q("#email", form),
-      phone: q("#phone", form),
-      date: q("#date", form),
-      time: q("#time", form),
-      party: q("#party", form),
-      agree: q("#agree", form),
-    };
-
-    const results = Object.entries(inputs).map(([key, el]) =>
-      key === "date" ? validateDate() : validateField(el)
-    );
-
-    const allValid = results.every(Boolean);
-    if (!allValid) {
-      const firstInvalid =
-        inputs.name.closest(".field").classList.contains("invalid")
-          ? inputs.name
-          : inputs.email.closest(".field").classList.contains("invalid")
-          ? inputs.email
-          : inputs.phone.closest(".field").classList.contains("invalid")
-          ? inputs.phone
-          : inputs.date.closest(".field").classList.contains("invalid")
-          ? inputs.date
-          : inputs.time.closest(".field").classList.contains("invalid")
-          ? inputs.time
-          : inputs.party.closest(".field").classList.contains("invalid")
-          ? inputs.party
-          : inputs.agree;
-      if (firstInvalid) firstInvalid.focus();
-      return;
-    }
-
-    try {
-      form.setAttribute("aria-busy", "true");
-      all("button, input, select, textarea", form).forEach((el) => (el.disabled = true));
-
-      await new Promise((res) => setTimeout(res, 600));
-
-      if (success) {
-        success.classList.add("show");
-        success.textContent = "Reservation received. We will email a confirmation shortly.";
-      }
-
-      form.reset();
-      if (dateEl && dateEl.dataset.minToday === "true") {
-        dateEl.min = todayYMD();
-      }
-      updateTimeAvailability();
-      all(".field", form).forEach((f) => f.classList.remove("invalid"));
-    } catch (err) {
-      if (success) {
-        success.classList.add("show");
-        success.textContent = "Sorry, something went wrong. Please try again.";
-      }
-    } finally {
-      form.removeAttribute("aria-busy");
-      all("button, input, select, textarea", form).forEach((el) => (el.disabled = false));
-      if (agreeEl) agreeEl.checked = false;
-    }
-  });
-});
-
+@media (max-width: 900px) { .inline-3 { grid-template-columns: 1fr; } }
+@media (max-width: 720px) {
+  .inline-2 { grid-template-columns: 1fr; }
+  .form-card, .tips-card { padding: 18px; }
+}
