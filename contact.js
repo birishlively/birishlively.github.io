@@ -55,6 +55,17 @@ document.addEventListener("DOMContentLoaded", () => {
       if (firstInvalid) firstInvalid.focus();
       return;
     }
+    
+    document.addEventListener('DOMContentLoaded', () => {
+      const targets = document.querySelectorAll('.reveal');
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) entry.target.classList.add('is-visible');
+        });
+      }, { threshold: 0.15 });
+
+      targets.forEach(t => io.observe(t));
+    });
 
     //  async submission
     try {

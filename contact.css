@@ -143,17 +143,27 @@ select:focus {
   text-decoration: underline;
 }
 
-/*  support */
-.contact-wrap > * {
+.reveal > * {
   opacity: 0;
   transform: translateY(12px);
   transition: 700ms ease;
 }
-.is-visible .contact-wrap > * {
+
+.reveal.is-visible > * {
   opacity: 1;
   transform: none;
 }
 
+.contact-wrap.reveal > * {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: 700ms ease;
+}
+
+.contact-wrap.reveal.is-visible > * {
+  opacity: 1;
+  transform: none;
+}
 /* responsivee */
 @media (max-width: 960px) {
   .contact-wrap {
@@ -163,5 +173,10 @@ select:focus {
     grid-template-columns: 1fr;
   }
   .map { min-height: 280px; }
+}
+
+.no-js .reveal > * {
+  opacity: 1;
+  transform: none;
 }
 
