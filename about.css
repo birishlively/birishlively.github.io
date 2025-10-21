@@ -7,7 +7,7 @@
     margin-left: auto;  /* centers block within container */
     margin-right: auto; /* centers block within container */
   }
-}
+
 .stat {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -103,5 +103,142 @@
     width: 130px;
     height: 130px;
   }
+}
+
+/* ===== About hero polish ===== */
+.about-hero {
+  padding-top: 72px;
+  padding-bottom: 8px;
+  background:
+    radial-gradient(1100px 360px at 50% -220px, rgba(211,47,47,0.06), transparent 60%),
+    linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.02));
+}
+
+.container h1 {
+  letter-spacing: 0.3px;
+}
+
+.container h1::after {
+  content: "";
+  display: block;
+  width: 64px;
+  height: 4px;
+  margin: 12px auto 0;
+  border-radius: 4px;
+  background: var(--red);
+}
+
+.sublead {
+  text-align: center;
+  max-width: 72ch;
+  margin: 10px auto 0;
+  color: #666;
+  line-height: 1.7;
+  font-size: clamp(0.95rem, 2vw, 1.05rem);
+}
+
+/* ===== Stat pill upgrade ===== */
+.stat {
+  max-width: 980px;
+  margin-left: auto;
+  margin-right: auto;
+  background: #fff;                 /* was var(--muted) */
+  border-radius: 18px;
+  padding: 22px 26px;
+  box-shadow:
+    0 18px 40px rgba(0,0,0,0.10),
+    inset 0 1px 0 rgba(0,0,0,0.04);
+}
+
+.stat div {
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.stat strong {
+  display: block;
+  font-size: clamp(1.6rem, 4.4vw, 2rem);
+  color: var(--red);
+  letter-spacing: 0.3px;
+}
+
+.stat span {
+  display: block;
+  margin-top: 6px;
+  font-weight: 500;
+  color: #6b7280;
+  font-size: 13px;
+  letter-spacing: 0.2px;
+}
+
+/* optional separators on wide screens */
+@media (min-width: 801px) {
+  .stat div:not(:first-child) {
+    border-left: 1px solid rgba(0,0,0,0.06);
+  }
+}
+
+/* ===== Team cards refinement ===== */
+.team-grid {
+  gap: 28px;                        /* slightly wider gaps */
+}
+
+.profile {
+  border-radius: 18px;
+  box-shadow: 0 14px 36px rgba(0,0,0,0.10);
+  padding-bottom: 8px;              /* space under text */
+}
+
+.profile:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 46px rgba(0,0,0,0.14);
+}
+
+/* soft “ring” and consistent crop */
+.profile img {
+  width: 148px;                     /* slightly smaller, feels lighter */
+  height: 148px;
+  margin: 24px auto 12px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  border: 4px solid #fff;
+  outline: 2px solid rgba(211,47,47,0.18);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.10);
+}
+
+.profile .card-body {
+  padding: 0 18px 22px;
+}
+
+.profile strong {
+  font-size: 1.05rem;
+  color: #111;
+}
+
+.profile small {
+  color: #1f3b63;                   /* tasteful accent for roles */
+  font-weight: 500;
+  margin-top: 2px;
+}
+
+.profile .caption {
+  display: block;
+  margin-top: 2px;
+  font-size: 11px;
+  color: #8b8b8b;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal > * {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 800px) {
+  .about-hero { padding-top: 56px; }
+  .stat { grid-template-columns: 1fr; max-width: 640px; }
 }
 
